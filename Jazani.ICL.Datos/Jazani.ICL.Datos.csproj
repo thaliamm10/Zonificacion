@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.3" />
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="5.21.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Jazani.Comunes.DatosAdo">
+      <HintPath>..\LibreriasPropias\Jazani.Comunes.DatosAdo.dll</HintPath>
+    </Reference>
+    <Reference Include="Jazani.Comunes.DatosBase">
+      <HintPath>..\LibreriasPropias\Jazani.Comunes.DatosBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Jazani.Comunes.DatosEF">
+      <HintPath>..\LibreriasPropias\Jazani.Comunes.DatosEF.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

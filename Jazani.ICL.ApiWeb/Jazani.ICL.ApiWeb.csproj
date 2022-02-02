@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="5.21.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jazani.ICL.Datos\Jazani.ICL.Datos.csproj" />
+    <ProjectReference Include="..\Jazani.ICL.Servicios\Jazani.ICL.Servicios.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Jazani.Comunes.Cargadores">
+      <HintPath>..\LibreriasPropias\Jazani.Comunes.Cargadores.dll</HintPath>
+    </Reference>
+    <Reference Include="Jazani.Comunes.Utilitarios">
+      <HintPath>..\LibreriasPropias\Jazani.Comunes.Utilitarios.dll</HintPath>
+    </Reference>
+    <Reference Include="Jazani.Comunes.DatosAdo">
+      <HintPath>..\LibreriasPropias\Jazani.Comunes.DatosAdo.dll</HintPath>
+    </Reference>
+    <Reference Include="Jazani.Comunes.DatosBase">
+      <HintPath>..\LibreriasPropias\Jazani.Comunes.DatosBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Jazani.Comunes.DatosEF">
+      <HintPath>..\LibreriasPropias\Jazani.Comunes.DatosEF.dll</HintPath>
+    </Reference>
+    <Reference Include="Jazani.Comunes.Seguridad">
+      <HintPath>..\LibreriasPropias\Jazani.Comunes.Seguridad.dll</HintPath>
+    </Reference>
+    <Reference Include="Jazani.Comunes.Base">
+      <HintPath>..\LibreriasPropias\Jazani.Comunes.Base.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
