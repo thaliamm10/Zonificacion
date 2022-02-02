@@ -37,3 +37,6 @@ Jazani.ICL.Servicios/bin
 Jazani.ICL.Servicios/obj
 Jazani.ICL.ApiWeb/bin
 Jazani.ICL.ApiWeb/obj
+
+# Visual Studio 2015/2017/2019 cache/options directory
+.vs/
