@@ -9,8 +9,8 @@ namespace Jazani.ICL.Servicios.Auth.Usuarios.Dtos
 {
     public class LoginPeticionDto
     {
-        [Required(ErrorMessage = "Usuario es requerido")]
-        public string Usuario { get; set; }
+        [Required(ErrorMessage = "Correo es requerido")]
+        public string Correo { get; set; }
         [Required(ErrorMessage = "Contraseña es requerido")]
         public string Clave { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using Jazani.Comunes.Seguridad.Servicios.Auth.Servicios.Abstracciones;
+﻿using AutoMapper;
+using Jazani.Comunes.Seguridad.Servicios.Auth.Servicios.Abstracciones;
 using Jazani.Comunes.Seguridad.Servicios.General.Dtos;
 using Jazani.Comunes.Utilitarios.Infraestructura.Dtos;
 using Jazani.Comunes.Utilitarios.Infraestructura.Utilitarios;
@@ -13,17 +14,20 @@ using System.Threading.Tasks;
 
 namespace Jazani.ICL.Servicios.Auth.Usuarios.Servicios.Implementaciones
 {
-    public class UsuarioLoginServicio: IUsuarioLoginServicio
+    public class LoginServicio: ILoginServicio
     {
+        private readonly IMapper _mapper;
         private readonly IUsuarioRepositorio _usuarioRepositorio;
         private readonly SeguridadConfiguracionDto _seguridadConfiguracion;
         private readonly ITokenAccesoServicio _tokenAccesoServicio;
 
-        public UsuarioLoginServicio(
+        public LoginServicio(
+                                    IMapper mapper,
                                     IUsuarioRepositorio usuarioRepositorio,
                                     SeguridadConfiguracionDto seguridadConfiguracion,
                                     ITokenAccesoServicio tokenAccesoServicio)
         {
+            _mapper = mapper;
             _usuarioRepositorio = usuarioRepositorio;
             _seguridadConfiguracion = seguridadConfiguracion;
             _tokenAccesoServicio = tokenAccesoServicio;
@@ -36,10 +40,15 @@ namespace Jazani.ICL.Servicios.Auth.Usuarios.Servicios.Implementaciones
             {
                 return operacionValidacion;
             }
-            var usuario = await _usuarioRepositorio.BuscarPorUsuarioAsync(peticion.Usuario);
+            var usuario = await _usuarioRepositorio.BuscarPorUsuarioAsync(peticion.Correo);
             if (usuario == null)
             {
                 return new OperacionDto<LoginRespuestaDto>(CodigosOperacionDto.UsuarioIncorrecto, "Usuario o Contraseña inválida");
+            }
+
+            if (Convert.ToInt32(usuario.Estado) != 1)
+            {
+                return new OperacionDto<LoginRespuestaDto>(CodigosOperacionDto.UsuarioInhabilitado, "Usuario no habilitado");
             }
 
             if (Md5Utilitario.Cifrar(peticion.Clave, _seguridadConfiguracion.PasswordSalt) != usuario.Clave)
@@ -49,7 +58,7 @@ namespace Jazani.ICL.Servicios.Auth.Usuarios.Servicios.Implementaciones
 
             return new OperacionDto<LoginRespuestaDto>(new LoginRespuestaDto()
             {
-                Nombre = usuario.Nombre,
+                Nombre = usuario.Nombres,
                 TokenAcceso = _tokenAccesoServicio.GenerarTokenRSA(usuario.Id)
             });
         }

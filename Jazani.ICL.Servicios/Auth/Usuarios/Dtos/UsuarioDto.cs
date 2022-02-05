@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Jazani.ICL.Servicios.Auth.Perfiles.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jazani.ICL.Datos.Auth.Entidades
+namespace Jazani.ICL.Servicios.Auth.Usuarios.Dtos
 {
-    public class Usuario
+    public class UsuarioDto
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public string Email { get; set; }
         public string Clave { get; set; }
         public string Nombres { get; set; }
@@ -18,13 +19,6 @@ namespace Jazani.ICL.Datos.Auth.Entidades
         public string Documento { get; set; }
         public string Telefono { get; set; }
         public string Direccion { get; set; }
-        public long  IdPerfil { get; set; }
-        public DateTime  FechaRegistro { get; set; }
-        public int  Estado { get; set; }
-        public virtual Perfil Perfil { get; set; }
-        public Usuario()
-        {
-            Estado = 1;
-        }
+        public PerfilDto Perfil { get; set; }
     }
 }

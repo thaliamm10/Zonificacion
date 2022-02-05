@@ -7,15 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Jazani.ICL.ApiWeb.Controllers
+namespace Jazani.ICL.ApiWeb.Controllers.Auth
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ApiControladorBase
     {
-        private readonly IUsuarioLoginServicio _usuarioLoginServicio;
+        private readonly ILoginServicio _usuarioLoginServicio;
         public AuthController(
-                              IUsuarioLoginServicio usuarioLoginServicio
+                              ILoginServicio usuarioLoginServicio
                              )
         {
             _usuarioLoginServicio = usuarioLoginServicio;

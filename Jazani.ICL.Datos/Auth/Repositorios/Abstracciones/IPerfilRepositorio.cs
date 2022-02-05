@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Jazani.ICL.Datos.Auth.Repositorios.Abstracciones
 {
-    public interface IUsuarioRepositorio : IICLRepositorio<Usuario, long>
+    public interface IPerfilRepositorio : IICLRepositorio<Perfil, long>
     {
-        Task<Usuario> BuscarPorUsuarioAsync(string email);
-        Task<List<Usuario>> ListarAsync();
+        Task<List<Perfil>> ListarAsync();
     }
 }

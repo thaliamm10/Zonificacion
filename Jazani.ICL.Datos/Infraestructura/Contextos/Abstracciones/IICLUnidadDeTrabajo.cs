@@ -12,5 +12,6 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Abstracciones
     public interface IICLUnidadDeTrabajo : IEFUnidadDeTrabajo
     {
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Perfil> Perfiles { get; set; }
     }
 }

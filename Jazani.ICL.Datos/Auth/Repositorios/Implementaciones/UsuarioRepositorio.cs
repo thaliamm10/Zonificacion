@@ -12,11 +12,14 @@ using System.Threading.Tasks;
 
 namespace Jazani.ICL.Datos.Auth.Repositorios.Implementaciones
 {
-    public class UsuarioRepositorio : ICLRepositorio<Usuario, int>, IUsuarioRepositorio
+    public class UsuarioRepositorio : ICLRepositorio<Usuario, long>, IUsuarioRepositorio
     {
         public UsuarioRepositorio(IICLUnidadDeTrabajo unidadDeTrabajo, IICLConfiguracion configuracion) : base(unidadDeTrabajo, configuracion) { }
 
-        public async Task<Usuario> BuscarPorUsuarioAsync(string usuario)
-        => await UnidadDeTrabajo.Usuarios.Where(x => x.Nombre == usuario).FirstOrDefaultAsync();
+        public async Task<Usuario> BuscarPorUsuarioAsync(string email)
+        => await UnidadDeTrabajo.Usuarios.Where(x => x.Email == email).FirstOrDefaultAsync();
+
+        public async Task<List<Usuario>> ListarAsync()
+       => await UnidadDeTrabajo.Usuarios.Include(e => e.Perfil).ToListAsync();
     }
 }

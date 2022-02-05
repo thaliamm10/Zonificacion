@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Jazani.ICL.Servicios.Auth.Usuarios.Servicios.Abstracciones
 {
-    public interface IUsuarioLoginServicio
+    public interface ILoginServicio
     {
         Task<OperacionDto<LoginRespuestaDto>> LoginAsync(LoginPeticionDto peticion);
     }

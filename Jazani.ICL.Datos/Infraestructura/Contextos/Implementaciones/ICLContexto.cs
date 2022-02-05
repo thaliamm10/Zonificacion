@@ -16,6 +16,7 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
         public ICLContexto(DbContextOptions opciones) : base(opciones) { }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Perfil> Perfiles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,6 +24,7 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
 
             modelBuilder.HasDefaultSchema("SISGESPRE");
             modelBuilder.ApplyConfiguration(new UsuarioMapeo());
+            modelBuilder.ApplyConfiguration(new PerfilMapeo());
 
         }
     }
