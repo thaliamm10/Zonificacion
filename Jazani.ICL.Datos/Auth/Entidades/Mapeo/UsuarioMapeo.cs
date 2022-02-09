@@ -12,7 +12,7 @@ namespace Jazani.ICL.Datos.Auth.Entidades.Mapeo
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.ToTable("USUARIO", "DEVELOPER");
+            builder.ToTable("USUARIO");
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Id).HasColumnName("ID");
             builder.Property(e => e.Email).HasColumnName("EMAIL").IsUnicode(false).HasMaxLength(80);

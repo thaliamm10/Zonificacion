@@ -10,7 +10,10 @@ namespace Jazani.ICL.Servicios.Auth.Perfiles.Servicios.Abstracciones
 {
     public interface IPerfilServicio
     {
-        Task<OperacionDto<RespuestaSimpleDto<string>>> CrearAsync(PerfilDto peticion);
+        Task<OperacionDto<RespuestaSimpleDto<string>>> CrearOActualizarAsync(PerfilDto peticion);
+        Task<OperacionDto<RespuestaSimpleDto<string>>> EliminarAsync(string idPerfilCifrado);
+        Task<OperacionDto<PerfilDto>> ObtenerAsync(string idPerfilCifrado);
         Task<OperacionDto<List<PerfilDto>>> ListarAsync();
+        Task<OperacionDto<JQueryDatatableDto<PerfilDto>>> ListarPaginado(PerfilPaginadoPeticionDto peticion);
     }
 }

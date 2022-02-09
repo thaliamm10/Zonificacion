@@ -22,7 +22,7 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.HasDefaultSchema("SISGESPRE");
+            //modelBuilder.HasDefaultSchema("SISGESPRE");
             modelBuilder.ApplyConfiguration(new UsuarioMapeo());
             modelBuilder.ApplyConfiguration(new PerfilMapeo());
 

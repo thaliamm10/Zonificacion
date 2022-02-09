@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Jazani.ICL.ApiWeb.Controllers.Auth
 {
-       [Route("api/Auth/[controller]")]
+    [Route("api/auth/[controller]")]
     [ApiController]
     public class PerfilController : ApiControladorBase
     {
@@ -24,11 +24,27 @@ namespace Jazani.ICL.ApiWeb.Controllers.Auth
             _perfilServicio = perfilServicio;
         }
 
-        [HttpPost("Crear")]
+        [HttpPost("Guardar")]
         [RequiereAcceso()]
-        public async Task<RespuestaSimpleDto<string>> CrearAsync(PerfilDto peticion)
+        public async Task<RespuestaSimpleDto<string>> GuardarAsync(PerfilDto peticion)
         {
-            var operacion = await _perfilServicio.CrearAsync(peticion);
+            var operacion = await _perfilServicio.CrearOActualizarAsync(peticion);
+            return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
+        }
+
+        [HttpDelete("Eliminar/{id}")]
+        [RequiereAcceso()]
+        public async Task<RespuestaSimpleDto<string>> EliminarAsync(string id)
+        {
+            var operacion = await _perfilServicio.EliminarAsync(id);
+            return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
+        }
+
+        [HttpGet("Obtener/{id}")]
+        [RequiereAcceso()]
+        public async Task<PerfilDto> ObtenerAsync(string id)
+        {
+            var operacion = await _perfilServicio.ObtenerAsync(id);
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
 
@@ -37,6 +53,15 @@ namespace Jazani.ICL.ApiWeb.Controllers.Auth
         public async Task<List<PerfilDto>> ListarAsync()
         {
             var operacion = await _perfilServicio.ListarAsync();
+            return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
+        }
+
+        [HttpPost("ListarPaginado")]
+        [RequiereAcceso()]
+        public async Task<JQueryDatatableDto<PerfilDto>> ListarPaginadoAsync(PerfilPaginadoPeticionDto peticion)
+        {
+            VerificarIfEsBuenJson(peticion);
+            var operacion = await _perfilServicio.ListarPaginado(peticion);
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
     }
