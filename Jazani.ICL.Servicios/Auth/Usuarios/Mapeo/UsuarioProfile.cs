@@ -15,9 +15,6 @@ namespace Jazani.ICL.Servicios.Auth.Usuarios.Mapeo
         {
             CreateMap<Usuario, UsuarioDto>()
                 .AfterMap<UsuarioProfileAction>();
-
-            CreateMap<UsuarioDto,Usuario>();
-
         }
     }
 }

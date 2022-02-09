@@ -16,8 +16,8 @@ namespace Jazani.ICL.Datos.Auth.Repositorios.Implementaciones
     {
         public UsuarioRepositorio(IICLUnidadDeTrabajo unidadDeTrabajo, IICLConfiguracion configuracion) : base(unidadDeTrabajo, configuracion) { }
 
-        public async Task<Usuario> BuscarPorUsuarioAsync(string email)
-        => await UnidadDeTrabajo.Usuarios.Where(x => x.Email == email).FirstOrDefaultAsync();
+        public async Task<Usuario> BuscarPorUsuarioAsync(string nombreUsuario)
+        => await UnidadDeTrabajo.Usuarios.Where(x => x.NombreUsuario == nombreUsuario).FirstOrDefaultAsync();
 
         public async Task<List<Usuario>> ListarAsync()
        => await UnidadDeTrabajo.Usuarios.Include(e => e.Perfil).ToListAsync();

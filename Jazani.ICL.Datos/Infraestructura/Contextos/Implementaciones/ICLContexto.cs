@@ -1,6 +1,8 @@
 ﻿using Jazani.Comunes.DatosEF.Infraestructura.Contexto.Implementaciones;
 using Jazani.ICL.Datos.Auth.Entidades;
 using Jazani.ICL.Datos.Auth.Entidades.Mapeo;
+using Jazani.ICL.Datos.General.Entidades;
+using Jazani.ICL.Datos.General.Entidades.Mapeo;
 using Jazani.ICL.Datos.Infraestructura.Contextos.Abstracciones;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,6 +19,9 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Perfil> Perfiles { get; set; }
+        public DbSet<DocumentoIdentidad> DocumentoIdentidad { get; set; }
+        public DbSet<Persona> Personas { get; set; }
+        public DbSet<Area> Areas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +30,9 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
             //modelBuilder.HasDefaultSchema("SISGESPRE");
             modelBuilder.ApplyConfiguration(new UsuarioMapeo());
             modelBuilder.ApplyConfiguration(new PerfilMapeo());
+            modelBuilder.ApplyConfiguration(new DocumentoIdentidadMapeo());
+            modelBuilder.ApplyConfiguration(new PersonaMapeo());
+            modelBuilder.ApplyConfiguration(new AreaMapeo());
 
         }
     }

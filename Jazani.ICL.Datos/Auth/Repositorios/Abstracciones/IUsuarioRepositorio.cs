@@ -10,7 +10,7 @@ namespace Jazani.ICL.Datos.Auth.Repositorios.Abstracciones
 {
     public interface IUsuarioRepositorio : IICLRepositorio<Usuario, long>
     {
-        Task<Usuario> BuscarPorUsuarioAsync(string email);
+        Task<Usuario> BuscarPorUsuarioAsync(string nombreUsuario);
         Task<List<Usuario>> ListarAsync();
     }
 }

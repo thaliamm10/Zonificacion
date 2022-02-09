@@ -24,27 +24,38 @@ namespace Jazani.ICL.ApiWeb.Controllers.Auth
             _perfilServicio = perfilServicio;
         }
 
-        [HttpPost("Guardar")]
+        [HttpPost("Crear")]
         [RequiereAcceso()]
-        public async Task<RespuestaSimpleDto<string>> GuardarAsync(PerfilDto peticion)
+        public async Task<RespuestaSimpleDto<string>> CrearAsync(PerfilDto peticion)
         {
+            VerificarIfEsBuenJson(peticion);
             var operacion = await _perfilServicio.CrearOActualizarAsync(peticion);
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
 
-        [HttpDelete("Eliminar/{id}")]
+        [HttpPut("Actualizar/{idCifrado}")]
         [RequiereAcceso()]
-        public async Task<RespuestaSimpleDto<string>> EliminarAsync(string id)
+        public async Task<RespuestaSimpleDto<string>> ActualizarAsync(string idCifrado,PerfilDto peticion)
         {
-            var operacion = await _perfilServicio.EliminarAsync(id);
+            VerificarIfEsBuenJson(peticion);
+            peticion.Id = idCifrado;
+            var operacion = await _perfilServicio.CrearOActualizarAsync(peticion);
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
 
-        [HttpGet("Obtener/{id}")]
+        [HttpDelete("Eliminar/{idCifrado}")]
         [RequiereAcceso()]
-        public async Task<PerfilDto> ObtenerAsync(string id)
+        public async Task<RespuestaSimpleDto<string>> EliminarAsync(string idCifrado)
         {
-            var operacion = await _perfilServicio.ObtenerAsync(id);
+            var operacion = await _perfilServicio.EliminarAsync(idCifrado);
+            return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
+        }
+
+        [HttpGet("Obtener/{idCifrado}")]
+        [RequiereAcceso()]
+        public async Task<PerfilDto> ObtenerAsync(string idCifrado)
+        {
+            var operacion = await _perfilServicio.ObtenerAsync(idCifrado);
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
 

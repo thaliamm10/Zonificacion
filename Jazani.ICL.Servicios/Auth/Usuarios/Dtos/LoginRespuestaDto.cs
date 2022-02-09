@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jazani.ICL.Servicios.General.Personas.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Jazani.ICL.Servicios.Auth.Usuarios.Dtos
 {
     public class LoginRespuestaDto
     {
-        public string Nombre { get; set; }
+        public PersonaDto Persona { get; set; }
         public string TokenAcceso { get; set; }
     }
 }

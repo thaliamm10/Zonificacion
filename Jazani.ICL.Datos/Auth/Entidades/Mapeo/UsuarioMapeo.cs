@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Jazani.ICL.Datos.General.Entidades;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -14,20 +15,15 @@ namespace Jazani.ICL.Datos.Auth.Entidades.Mapeo
         {
             builder.ToTable("USUARIO");
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.Id).HasColumnName("ID");
-            builder.Property(e => e.Email).HasColumnName("EMAIL").IsUnicode(false).HasMaxLength(80);
-            builder.Property(e => e.Clave).HasColumnName("CONTRASENIA").IsUnicode(false).HasMaxLength(200);
-            builder.Property(e => e.Nombres).HasColumnName("NOMBRES").IsUnicode(false).HasMaxLength(80);
-            builder.Property(e => e.ApellidoPaterno).HasColumnName("PATERNO").IsUnicode(false).HasMaxLength(80);
-            builder.Property(e => e.ApellidoMaterno).HasColumnName("MATERNO").IsUnicode(false).HasMaxLength(80);
-            builder.Property(e => e.EmailAlterno).HasColumnName("EMAIL_ALTERNO").IsUnicode(false).HasMaxLength(80);
-            builder.Property(e => e.Documento).HasColumnName("NUMERO_DOCUMENTO").IsUnicode(false).HasMaxLength(20);
-            builder.Property(e => e.Telefono).HasColumnName("TELEFONO").IsUnicode(false).HasMaxLength(20);
-            builder.Property(e => e.Direccion).HasColumnName("DIRECCION").IsUnicode(false).HasMaxLength(20);
-            builder.Property(e => e.IdPerfil).HasColumnName("ID_PERFIL").IsUnicode(false).HasMaxLength(20);
-            builder.Property(e => e.FechaRegistro).HasColumnName("FECHA_REGISTRO").IsUnicode(false).HasMaxLength(20);
+            builder.Property(t => t.Id).HasColumnName("ID_USUARIO");
+            builder.Property(e => e.NombreUsuario).HasColumnName("NOMBRE_USUARIO").IsUnicode(false).HasMaxLength(100);
+            builder.Property(e => e.Clave).HasColumnName("CLAVE").IsUnicode(false).HasMaxLength(500);
+            builder.Property(e => e.ClaveSalt).HasColumnName("CLAVE_SALT").IsUnicode(false).HasMaxLength(500);
+            builder.Property(e => e.IdPerfil).HasColumnName("ID_PERFIL").IsRequired();
+            builder.Property(e => e.FechaRegistro).HasColumnName("FECHA_REGISTRO");
             builder.Property(e => e.Estado).HasColumnName("ESTADO");
             builder.HasOne(e => e.Perfil).WithMany(b => b.Usuario).HasForeignKey(c => c.IdPerfil);
+            //builder.HasOne(a => a.Persona).WithOne(b => b.Usuario).HasForeignKey<Persona>(b => b.Id);
         }
     }
 }

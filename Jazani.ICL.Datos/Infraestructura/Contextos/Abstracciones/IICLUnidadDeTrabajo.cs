@@ -1,5 +1,6 @@
 ﻿using Jazani.Comunes.DatosEF.Infraestructura.Contexto.Abstracciones;
 using Jazani.ICL.Datos.Auth.Entidades;
+using Jazani.ICL.Datos.General.Entidades;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,8 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Abstracciones
     {
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Perfil> Perfiles { get; set; }
+        public DbSet<DocumentoIdentidad> DocumentoIdentidad { get; set; }
+        public DbSet<Persona> Personas { get; set; }
+        public DbSet<Area> Areas { get; set; }
     }
 }
