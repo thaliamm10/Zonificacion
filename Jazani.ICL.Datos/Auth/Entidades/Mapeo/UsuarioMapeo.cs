@@ -22,6 +22,7 @@ namespace Jazani.ICL.Datos.Auth.Entidades.Mapeo
             builder.Property(e => e.IdPerfil).HasColumnName("ID_PERFIL").IsRequired();
             builder.Property(e => e.FechaRegistro).HasColumnName("FECHA_REGISTRO");
             builder.Property(e => e.Estado).HasColumnName("ESTADO");
+
             builder.HasOne(e => e.Perfil).WithMany(b => b.Usuario).HasForeignKey(c => c.IdPerfil);
             //builder.HasOne(a => a.Persona).WithOne(b => b.Usuario).HasForeignKey<Persona>(b => b.Id);
         }
