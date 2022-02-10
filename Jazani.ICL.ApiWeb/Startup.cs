@@ -88,6 +88,14 @@ namespace Jazani.ICL.ApiWeb
 
             app.UseHttpsRedirection();
 
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyHeader()
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .Build();
+            });
+
             app.UseRouting();
             app.UseExceptionHandler(errorApp => errorApp.UseCustomErrors(env, true));
             app.UseAuthentication();
