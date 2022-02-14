@@ -25,7 +25,7 @@ namespace Jazani.ICL.ApiWeb.Controllers.Auth
         }
 
         [HttpPost("Crear")]
-        [RequiereAcceso()]
+        //[RequiereAcceso()]
         public async Task<RespuestaSimpleDto<string>> CrearAsync(UsuarioDto peticion)
         {
             var operacion = await _usuarioServicio.CrearAsync(peticion);

@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="General\Procedimientos\" />
-    <Folder Include="ProcedimientoGeneral\Repositorios\" />
   </ItemGroup>
 
 </Project>

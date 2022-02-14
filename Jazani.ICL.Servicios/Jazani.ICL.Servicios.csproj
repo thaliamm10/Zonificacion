@@ -25,9 +25,5 @@
       <HintPath>..\LibreriasPropias\Jazani.Comunes.DatosBase.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ProcedimientoGeneral\TipoProcedimiento\Mapeo\" />
-    <Folder Include="ProcedimientoGeneral\TipoProcedimiento\Servicios\" />
-  </ItemGroup>
 
 </Project>
