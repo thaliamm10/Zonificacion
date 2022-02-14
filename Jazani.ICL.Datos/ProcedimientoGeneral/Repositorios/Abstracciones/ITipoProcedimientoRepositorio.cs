@@ -11,9 +11,8 @@ namespace Jazani.ICL.Datos.ProcedimientoGeneral.Repositorios.Abstracciones
     public interface ITipoProcedimientoRepositorio: IICLRepositorio<TipoProcedimiento, int>
     {
         Task<List<TipoProcedimiento>> ListarAsync();
-
         Task<List<TipoProcedimiento>> ListarPaginadoAsync(int start, int length);
-
         Task<List<TipoProcedimiento>> RegistrarAsync(TipoProcedimiento tipoProcedimiento);
+        Task<List<TipoProcedimiento>> EliminarAsync(int id);
     }
 }

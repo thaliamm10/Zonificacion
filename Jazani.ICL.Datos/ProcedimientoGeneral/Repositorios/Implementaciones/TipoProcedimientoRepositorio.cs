@@ -106,5 +106,34 @@ namespace Jazani.ICL.Datos.ProcedimientoGeneral.Repositorios.Implementaciones
 
             return lista;
         }
+
+        public async Task<List<TipoProcedimiento>> EliminarAsync(int id)
+        {
+            var lista = new List<TipoProcedimiento>();
+            var sql = "PKG_ADMINISTRAR_TPROCEDIMIENTO.SP_ELIMINAR";
+
+            using (var conexion = new OracleConnection(Configuracion.CadenaConexion))
+            {
+                using var comando = new OracleCommand(sql, conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add(new OracleParameter("@P_ID", OracleDbType.Int16, id, ParameterDirection.Input));
+                comando.Parameters.Add(new OracleParameter("@P_C_CURSOR", OracleDbType.RefCursor, ParameterDirection.Output));
+                conexion.Open();
+                using var reader = await comando.ExecuteReaderAsync(CommandBehavior.CloseConnection);
+                while (reader.Read())
+                {
+                    var data = new TipoProcedimiento
+                    {
+                        Id = !reader.IsDBNull(reader.GetOrdinal("ID_TIPO_PROCEDIMIENTO")) ? reader.GetInt32(reader.GetOrdinal("ID_TIPO_PROCEDIMIENTO")) : 0,
+                        Nombre = !reader.IsDBNull(reader.GetOrdinal("NOMBRE")) ? reader.GetString(reader.GetOrdinal("NOMBRE")) : null,
+                        FechaRegistro = !reader.IsDBNull(reader.GetOrdinal("FECHA_REGISTRO")) ? reader.GetDateTime(reader.GetOrdinal("FECHA_REGISTRO")) : DateTime.UtcNow,
+                        Estado = !reader.IsDBNull(reader.GetOrdinal("ESTADO")) ? reader.GetInt16(reader.GetOrdinal("ESTADO")) : 0
+                    };
+                    lista.Add(data);
+                }
+            }
+
+            return lista;
+        }
     }
 }

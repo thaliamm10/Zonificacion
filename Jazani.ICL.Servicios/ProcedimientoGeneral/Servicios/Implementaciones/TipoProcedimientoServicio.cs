@@ -60,5 +60,14 @@ namespace Jazani.ICL.Servicios.ProcedimientoGeneral.Servicios.Implementaciones
             var dto = _mapper.Map<List<TipoProcedimientoDto>>(obj_registro);
             return new OperacionDto<List<TipoProcedimientoDto>>(dto);
         }
+        public async Task<OperacionDto<List<TipoProcedimientoDto>>> EliminarAsync(String id)
+        {
+            var idTproc = RijndaelUtilitario.DecryptRijndaelFromUrl<int>(id);
+
+            var obj_response = await _tipoProcedimientoRepositorio.EliminarAsync(idTproc);
+
+            var dto = _mapper.Map<List<TipoProcedimientoDto>>(obj_response);
+            return new OperacionDto<List<TipoProcedimientoDto>>(dto);
+        }
     }
 }

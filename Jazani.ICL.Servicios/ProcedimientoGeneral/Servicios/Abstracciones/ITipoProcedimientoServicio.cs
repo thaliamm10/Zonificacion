@@ -14,5 +14,6 @@ namespace Jazani.ICL.Servicios.ProcedimientoGeneral.Servicios.Abstracciones
         Task<OperacionDto<List<TipoProcedimientoDto>>> ListarAsync();
         Task<OperacionDto<List<TipoProcedimientoDto>>> ListarPaginadoAsync(int start, int length);
         Task<OperacionDto<List<TipoProcedimientoDto>>> RegistrarAsync(TipoProcedimientoDto tipoProcedimientoDto);
+        Task<OperacionDto<List<TipoProcedimientoDto>>> EliminarAsync(String id);
     }
 }

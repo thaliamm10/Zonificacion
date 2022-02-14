@@ -43,5 +43,11 @@ namespace Jazani.ICL.ApiWeb.Controllers.ProcedimientoGeneral
             var operacion = await _tipoProcedimientoServicio.RegistrarAsync(tipoProcedimientoDto);
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
+        [HttpDelete("Eliminar/{id}")]
+        public async Task<List<TipoProcedimientoDto>> EliminarAsync(String id)
+        {
+            var operacion = await _tipoProcedimientoServicio.EliminarAsync(id);
+            return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
+        }
     }
 }
