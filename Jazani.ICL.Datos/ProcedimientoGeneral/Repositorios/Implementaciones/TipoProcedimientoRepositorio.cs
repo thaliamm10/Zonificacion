@@ -76,5 +76,23 @@ namespace Jazani.ICL.Datos.ProcedimientoGeneral.Repositorios.Implementaciones
             }
             return lista;
         }
+
+        public async Task<bool> RegistrarAsync(TipoProcedimiento tipoProcedimiento)
+        {
+            var sql = "PKG_ADMINISTRAR_TPROCEDIMIENTO.SP_REGISTRAR";
+
+            using (var conexion = new OracleConnection(Configuracion.CadenaConexion))
+            {
+                using var comando = new OracleCommand(sql, conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add(new OracleParameter("@P_ID", OracleDbType.Int16, tipoProcedimiento.Id, ParameterDirection.Input));
+                comando.Parameters.Add(new OracleParameter("@P_NOMBRE", OracleDbType.Varchar2, tipoProcedimiento.Nombre, ParameterDirection.Input));
+                conexion.Open();
+                using var reader = await comando.ExecuteReaderAsync(CommandBehavior.CloseConnection);
+                
+            }
+
+            return true;
+        }
     }
 }
