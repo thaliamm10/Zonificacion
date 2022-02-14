@@ -1,4 +1,5 @@
 ﻿using Jazani.Comunes.Base.ApiWeb.Base;
+using Jazani.ICL.Datos.ProcedimientoGeneral.Entidades;
 using Jazani.ICL.Servicios.ProcedimientoGeneral.Dtos;
 using Jazani.ICL.Servicios.ProcedimientoGeneral.Servicios.Abstracciones;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,13 @@ namespace Jazani.ICL.ApiWeb.Controllers.ProcedimientoGeneral
         public async Task<List<TipoProcedimientoDto>> ListarPaginadoAsync(int start, int length)
         {
             var operacion = await _tipoProcedimientoServicio.ListarPaginadoAsync(start, length);
+            return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
+        }
+
+        [HttpPost("Registrar")]
+        public async Task<List<TipoProcedimientoDto>> RegistrarAsync(TipoProcedimientoDto tipoProcedimientoDto)
+        {
+            var operacion = await _tipoProcedimientoServicio.RegistrarAsync(tipoProcedimientoDto);
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
     }

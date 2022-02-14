@@ -14,6 +14,6 @@ namespace Jazani.ICL.Datos.ProcedimientoGeneral.Repositorios.Abstracciones
 
         Task<List<TipoProcedimiento>> ListarPaginadoAsync(int start, int length);
 
-        Task<Boolean> RegistrarAsync(TipoProcedimiento tipoProcedimiento);
+        Task<List<TipoProcedimiento>> RegistrarAsync(TipoProcedimiento tipoProcedimiento);
     }
 }
