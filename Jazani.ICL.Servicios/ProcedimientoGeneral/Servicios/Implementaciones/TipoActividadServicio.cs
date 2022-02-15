@@ -25,39 +25,99 @@ namespace Jazani.ICL.Servicios.ProcedimientoGeneral.Servicios.Implementaciones
             _mapper = mapper;
             _tipoActividadRepositorio = tipoActividadRepositorio;
         }
-        public async Task<OperacionDto<TipoActividadDto>> EliminarAsync(string id)
+
+        public async Task<OperacionDto<RespuestaSimpleDto<string>>> CrearOActualizarAsync(TipoActividadDto peticion)
         {
-            var idTipoActividad = RijndaelUtilitario.DecryptRijndaelFromUrl<int>(id);
+            var operacionValidacion = ValidacionUtilitario.ValidarModelo<RespuestaSimpleDto<string>>(peticion);
 
-            var obj_response = await _tipoActividadRepositorio.EliminarAsync(idTipoActividad);
+            if (!operacionValidacion.Completado)
+            {
+                return operacionValidacion;
+            }
 
-            var dto = _mapper.Map<TipoActividadDto>(obj_response);
-            return new OperacionDto<TipoActividadDto>(dto);
+            var id = RijndaelUtilitario.DecryptRijndaelFromUrl<int>(peticion.Id);
+
+            var entidad = await _tipoActividadRepositorio.BuscarPorIdAsync(id);
+
+            if (entidad == null)
+            {
+                entidad = new TipoActividad();
+            }
+
+            entidad.Nombre = peticion.Nombre;
+
+            if (entidad.Id == 0)
+            {
+                var validarNombre = await _tipoActividadRepositorio.BuscarPorNombreAsync(peticion.Nombre);
+                if (validarNombre != null)
+                {
+                    if (validarNombre.Estado == 0)
+                    {
+                        validarNombre.Estado = 1;
+                        _tipoActividadRepositorio.Editar(validarNombre);
+                    }
+                    else
+                    {
+                        return new OperacionDto<RespuestaSimpleDto<string>>(CodigosOperacionDto.Invalido, "El nombre ingresado ya existe");
+                    }
+                }
+                else
+                {
+                    _tipoActividadRepositorio.Insertar(entidad);
+                }
+            }
+            else
+            {
+                _tipoActividadRepositorio.Editar(entidad);
+            }
+            await _tipoActividadRepositorio.UnidadDeTrabajo.GuardarCambiosAsync();
+
+            return new OperacionDto<RespuestaSimpleDto<string>>(
+                new RespuestaSimpleDto<string>()
+                {
+                    Id = RijndaelUtilitario.EncryptRijndaelToUrl(entidad.Id),
+                    Mensaje = "Se guardó con éxito."
+                });
+        }
+
+        public async Task<OperacionDto<RespuestaSimpleDto<string>>> EliminarAsync(string idTipoActividadCifrado)
+        {
+            var id = RijndaelUtilitario.DecryptRijndaelFromUrl<int>(idTipoActividadCifrado);
+            var entidad = await _tipoActividadRepositorio.BuscarPorIdYNoBorradoAsync(id);
+            if (entidad == null)
+            {
+                return new OperacionDto<RespuestaSimpleDto<string>>(CodigosOperacionDto.NoExiste, "Tipo de actividad no existe");
+            }
+            entidad.Estado = 0;
+            _tipoActividadRepositorio.Editar(entidad);
+
+            await _tipoActividadRepositorio.UnidadDeTrabajo.GuardarCambiosAsync();
+
+            return new OperacionDto<RespuestaSimpleDto<string>>(
+                new RespuestaSimpleDto<string>()
+                {
+                    Mensaje = "Eliminado correctamente"
+                });
         }
 
         public async Task<OperacionDto<List<TipoActividadDto>>> ListarAsync()
         {
-            var tipoActividades = await _tipoActividadRepositorio.ListarAsync();
+            var json_data = await _tipoActividadRepositorio.ListarAsync();
 
-            var dto = _mapper.Map<List<TipoActividadDto>>(tipoActividades);
+            var dto = _mapper.Map<List<TipoActividadDto>>(json_data);
             return new OperacionDto<List<TipoActividadDto>>(dto);
         }
 
-        public async Task<OperacionDto<TipoActividadDto>> RegistrarAsync(TipoActividadDto tipoActividadDto)
+        public async Task<OperacionDto<TipoActividadDto>> ObtenerAsync(string idTipoActividadCifrado)
         {
-            TipoActividad tipoActividad = new TipoActividad();
-            var idTipoActividad = 0;
-            if (tipoActividadDto.Id != "NULL")
+            var id = RijndaelUtilitario.DecryptRijndaelFromUrl<int>(idTipoActividadCifrado);
+            var entidad = await _tipoActividadRepositorio.BuscarPorIdAsync(id);
+            if (entidad == null)
             {
-                idTipoActividad = RijndaelUtilitario.DecryptRijndaelFromUrl<int>(tipoActividadDto.Id);
+                return new OperacionDto<TipoActividadDto>(CodigosOperacionDto.NoExiste, "Tipo actividad no existe");
             }
 
-            tipoActividad.Id = idTipoActividad;
-            tipoActividad.Nombre = tipoActividadDto.Nombre;
-
-            var obj_registro = await _tipoActividadRepositorio.RegistrarAsync(tipoActividad);
-
-            var dto = _mapper.Map<TipoActividadDto>(obj_registro);
+            var dto = _mapper.Map<TipoActividadDto>(entidad);
             return new OperacionDto<TipoActividadDto>(dto);
         }
     }

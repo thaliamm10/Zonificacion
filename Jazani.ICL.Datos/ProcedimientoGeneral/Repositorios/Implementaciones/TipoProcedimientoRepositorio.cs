@@ -18,122 +18,16 @@ namespace Jazani.ICL.Datos.ProcedimientoGeneral.Repositorios.Implementaciones
     {
         public TipoProcedimientoRepositorio(IICLUnidadDeTrabajo unidadDeTrabajo, IICLConfiguracion configuracion) : base(unidadDeTrabajo, configuracion) { }
 
-        //public async Task<List<TipoProcedimiento>> ListarAsync()
-        //    => await UnidadDeTrabajo.TipoProcedimientos.Where(e => e.Estado == 1).ToListAsync();
+        public override async Task<TipoProcedimiento> BuscarPorIdAsync(int id)
+        => await UnidadDeTrabajo.TipoProcedimientos.Where(e => e.Id == id).FirstOrDefaultAsync();
+
+        public override async Task<TipoProcedimiento> BuscarPorIdYNoBorradoAsync(int id)
+        => await UnidadDeTrabajo.TipoProcedimientos.Where(e => e.Id == id && e.Estado == 1).FirstOrDefaultAsync();
+
+        public async Task<TipoProcedimiento> BuscarPorNombreAsync(string nombre)
+        => await UnidadDeTrabajo.TipoProcedimientos.Where(x => x.Nombre == nombre).FirstOrDefaultAsync();
 
         public async Task<List<TipoProcedimiento>> ListarAsync()
-        {
-            var lista = new List<TipoProcedimiento>();
-            var sql = "PKG_ADMINISTRAR_TPROCEDIMIENTO.SP_LISTAR";
-
-            using (var conexion = new OracleConnection(Configuracion.CadenaConexion))
-            {
-                using var comando = new OracleCommand(sql, conexion);
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add(new OracleParameter("@P_C_CURSOR", OracleDbType.RefCursor, ParameterDirection.Output));
-                conexion.Open();
-                using var reader = await comando.ExecuteReaderAsync(CommandBehavior.CloseConnection);
-                while (reader.Read())
-                {
-                    var data = new TipoProcedimiento
-                    {
-                        Id = !reader.IsDBNull(reader.GetOrdinal("ID_TIPO_PROCEDIMIENTO")) ? reader.GetInt32(reader.GetOrdinal("ID_TIPO_PROCEDIMIENTO")) : 0,
-                        Nombre = !reader.IsDBNull(reader.GetOrdinal("NOMBRE")) ? reader.GetString(reader.GetOrdinal("NOMBRE")) : null,
-                        FechaRegistro = !reader.IsDBNull(reader.GetOrdinal("FECHA_REGISTRO")) ? reader.GetDateTime(reader.GetOrdinal("FECHA_REGISTRO")) : DateTime.UtcNow,
-                        Estado = !reader.IsDBNull(reader.GetOrdinal("ESTADO")) ? reader.GetInt16(reader.GetOrdinal("ESTADO")) : 0 
-                    };
-                    lista.Add(data);
-                }
-            }
-            return lista;
-        }
-
-        public async Task<List<TipoProcedimiento>> ListarPaginadoAsync(int start, int length)
-        {
-            var lista = new List<TipoProcedimiento>();
-            var sql = "PKG_ADMINISTRAR_TPROCEDIMIENTO.SP_LISTAR_PAGINADO";
-
-            using (var conexion = new OracleConnection(Configuracion.CadenaConexion))
-            {
-                using var comando = new OracleCommand(sql, conexion);
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add(new OracleParameter("@P_C_CURSOR", OracleDbType.RefCursor, ParameterDirection.Output));
-                comando.Parameters.Add(new OracleParameter("@P_START", OracleDbType.Int16, start, ParameterDirection.Input));
-                comando.Parameters.Add(new OracleParameter("@P_LENGTH", OracleDbType.Int16, length, ParameterDirection.Input));
-                conexion.Open();
-                using var reader = await comando.ExecuteReaderAsync(CommandBehavior.CloseConnection);
-                while (reader.Read())
-                {
-                    var data = new TipoProcedimiento
-                    {
-                        Id = !reader.IsDBNull(reader.GetOrdinal("ID_TIPO_PROCEDIMIENTO")) ? reader.GetInt32(reader.GetOrdinal("ID_TIPO_PROCEDIMIENTO")) : 0,
-                        Nombre = !reader.IsDBNull(reader.GetOrdinal("NOMBRE")) ? reader.GetString(reader.GetOrdinal("NOMBRE")) : null,
-                        FechaRegistro = !reader.IsDBNull(reader.GetOrdinal("FECHA_REGISTRO")) ? reader.GetDateTime(reader.GetOrdinal("FECHA_REGISTRO")) : DateTime.UtcNow,
-                        Estado = !reader.IsDBNull(reader.GetOrdinal("ESTADO")) ? reader.GetInt16(reader.GetOrdinal("ESTADO")) : 0
-                    };
-                    lista.Add(data);
-                }
-            }
-            return lista;
-        }
-
-        public async Task<List<TipoProcedimiento>> RegistrarAsync(TipoProcedimiento tipoProcedimiento)
-        {
-            var lista = new List<TipoProcedimiento>();
-            var sql = "PKG_ADMINISTRAR_TPROCEDIMIENTO.SP_REGISTRAR";
-
-            using (var conexion = new OracleConnection(Configuracion.CadenaConexion))
-            {
-                using var comando = new OracleCommand(sql, conexion);
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add(new OracleParameter("@P_ID", OracleDbType.Int16, tipoProcedimiento.Id, ParameterDirection.Input));
-                comando.Parameters.Add(new OracleParameter("@P_NOMBRE", OracleDbType.Varchar2, tipoProcedimiento.Nombre, ParameterDirection.Input));
-                comando.Parameters.Add(new OracleParameter("@P_C_CURSOR", OracleDbType.RefCursor, ParameterDirection.Output));
-                conexion.Open();
-                using var reader = await comando.ExecuteReaderAsync(CommandBehavior.CloseConnection);
-                while (reader.Read())
-                {
-                    var data = new TipoProcedimiento
-                    {
-                        Id = !reader.IsDBNull(reader.GetOrdinal("ID_TIPO_PROCEDIMIENTO")) ? reader.GetInt32(reader.GetOrdinal("ID_TIPO_PROCEDIMIENTO")) : 0,
-                        Nombre = !reader.IsDBNull(reader.GetOrdinal("NOMBRE")) ? reader.GetString(reader.GetOrdinal("NOMBRE")) : null,
-                        FechaRegistro = !reader.IsDBNull(reader.GetOrdinal("FECHA_REGISTRO")) ? reader.GetDateTime(reader.GetOrdinal("FECHA_REGISTRO")) : DateTime.UtcNow,
-                        Estado = !reader.IsDBNull(reader.GetOrdinal("ESTADO")) ? reader.GetInt16(reader.GetOrdinal("ESTADO")) : 0
-                    };
-                    lista.Add(data);
-                }
-            }
-
-            return lista;
-        }
-
-        public async Task<List<TipoProcedimiento>> EliminarAsync(int id)
-        {
-            var lista = new List<TipoProcedimiento>();
-            var sql = "PKG_ADMINISTRAR_TPROCEDIMIENTO.SP_ELIMINAR";
-
-            using (var conexion = new OracleConnection(Configuracion.CadenaConexion))
-            {
-                using var comando = new OracleCommand(sql, conexion);
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add(new OracleParameter("@P_ID", OracleDbType.Int16, id, ParameterDirection.Input));
-                comando.Parameters.Add(new OracleParameter("@P_C_CURSOR", OracleDbType.RefCursor, ParameterDirection.Output));
-                conexion.Open();
-                using var reader = await comando.ExecuteReaderAsync(CommandBehavior.CloseConnection);
-                while (reader.Read())
-                {
-                    var data = new TipoProcedimiento
-                    {
-                        Id = !reader.IsDBNull(reader.GetOrdinal("ID_TIPO_PROCEDIMIENTO")) ? reader.GetInt32(reader.GetOrdinal("ID_TIPO_PROCEDIMIENTO")) : 0,
-                        Nombre = !reader.IsDBNull(reader.GetOrdinal("NOMBRE")) ? reader.GetString(reader.GetOrdinal("NOMBRE")) : null,
-                        FechaRegistro = !reader.IsDBNull(reader.GetOrdinal("FECHA_REGISTRO")) ? reader.GetDateTime(reader.GetOrdinal("FECHA_REGISTRO")) : DateTime.UtcNow,
-                        Estado = !reader.IsDBNull(reader.GetOrdinal("ESTADO")) ? reader.GetInt16(reader.GetOrdinal("ESTADO")) : 0
-                    };
-                    lista.Add(data);
-                }
-            }
-
-            return lista;
-        }
+        => await UnidadDeTrabajo.TipoProcedimientos.Where(e => e.Estado == 1).ToListAsync();
     }
 }

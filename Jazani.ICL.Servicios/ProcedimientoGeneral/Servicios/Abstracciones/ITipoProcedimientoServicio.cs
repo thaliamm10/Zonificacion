@@ -1,5 +1,4 @@
 ﻿using Jazani.Comunes.Utilitarios.Infraestructura.Dtos;
-using Jazani.ICL.Datos.ProcedimientoGeneral.Entidades;
 using Jazani.ICL.Servicios.ProcedimientoGeneral.Dtos;
 using System;
 using System.Collections.Generic;
@@ -11,9 +10,9 @@ namespace Jazani.ICL.Servicios.ProcedimientoGeneral.Servicios.Abstracciones
 {
     public interface ITipoProcedimientoServicio
     {
+        Task<OperacionDto<RespuestaSimpleDto<string>>> CrearOActualizarAsync(TipoProcedimientoDto peticion);
+        Task<OperacionDto<RespuestaSimpleDto<string>>> EliminarAsync(string idCifrado);
+        Task<OperacionDto<TipoProcedimientoDto>> ObtenerAsync(string idCifrado);
         Task<OperacionDto<List<TipoProcedimientoDto>>> ListarAsync();
-        Task<OperacionDto<List<TipoProcedimientoDto>>> ListarPaginadoAsync(int start, int length);
-        Task<OperacionDto<List<TipoProcedimientoDto>>> RegistrarAsync(TipoProcedimientoDto tipoProcedimientoDto);
-        Task<OperacionDto<List<TipoProcedimientoDto>>> EliminarAsync(String id);
     }
 }

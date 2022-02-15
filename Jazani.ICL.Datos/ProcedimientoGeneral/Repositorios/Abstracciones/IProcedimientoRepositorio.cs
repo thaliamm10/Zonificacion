@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Jazani.ICL.Datos.ProcedimientoGeneral.Repositorios.Abstracciones
 {
-    public interface ITipoProcedimientoRepositorio: IICLRepositorio<TipoProcedimiento, int>
+    public interface IProcedimientoRepositorio : IICLRepositorio<Procedimiento, int>
     {
-        Task<List<TipoProcedimiento>> ListarAsync();
-        Task<TipoProcedimiento> BuscarPorNombreAsync(string nombre);
+        Task<List<Procedimiento>> ListarAsync(String nombre, int estado);
     }
 }

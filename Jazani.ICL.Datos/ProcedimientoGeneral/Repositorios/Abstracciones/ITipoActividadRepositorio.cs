@@ -11,7 +11,6 @@ namespace Jazani.ICL.Datos.ProcedimientoGeneral.Repositorios.Abstracciones
     public interface ITipoActividadRepositorio : IICLRepositorio<TipoActividad, int>
     {
         Task<List<TipoActividad>> ListarAsync();
-        Task<TipoActividad> RegistrarAsync(TipoActividad tipoActividad);
-        Task<TipoActividad> EliminarAsync(int Id);
+        Task<TipoActividad> BuscarPorNombreAsync(string nombre);
     }
 }
