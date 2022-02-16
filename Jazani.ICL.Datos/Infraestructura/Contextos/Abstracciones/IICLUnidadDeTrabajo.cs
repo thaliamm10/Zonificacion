@@ -19,10 +19,10 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Abstracciones
         public DbSet<DocumentoIdentidad> DocumentoIdentidad { get; set; }
         public DbSet<Persona> Personas { get; set; }
         public DbSet<Area> Areas { get; set; }
-<<<<<<< HEAD
+        
         public DbSet<Ubigeo> Ubigeos { get; set; }
-=======
+        
         public DbSet<Sector> Sectores { get; set; }
->>>>>>> 8149886ef9c09d4652780be818292e5fb6878c71
+        
     }
 }
