@@ -29,8 +29,28 @@ namespace Jazani.ICL.ApiWeb.Controllers.ProcedimientoGeneral
             return null;
         }
 
+        [HttpGet("Listar/Cabecera/{nombre}/{estado}")]
+        public async Task<List<ProcedimientoDto>> ListarCabeceraAsync(String nombre, int estado)
+        {
+            var operacion = await _procedimientoServicio.ListarAsync(nombre, estado);
+            return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
+        }
+
+        [HttpGet("Obtener/Detalle/{idCabeceraCifrado}")]
+        public async Task<List<ActividadDto>> ObtenerDetalleAsync(String idCabeceraCifrado)
+        {
+            return null;
+        }
+
         [HttpPost("Crear")]
         public async Task<RespuestaSimpleDto<String>> CrearAsync(ProcedimientoDto peticion)
+        {
+            VerificarIfEsBuenJson(peticion);
+            throw new NotImplementedException();
+        }
+
+        [HttpPut("Actualizar/{idCifrado}")]
+        public async Task<RespuestaSimpleDto<String>> ActualizarAsync(String idCifrado, ProcedimientoDto peticion)
         {
             VerificarIfEsBuenJson(peticion);
             throw new NotImplementedException();

@@ -24,5 +24,6 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Abstracciones
         public DbSet<TipoActividad> TipoActividads { get; set; }
         public DbSet<Ubigeo> Ubigeos { get; set; }
         public DbSet<Sector> Sectores { get; set; }
+        public DbSet<Procedimiento> Procedimientos { get; set; }
     }
 }

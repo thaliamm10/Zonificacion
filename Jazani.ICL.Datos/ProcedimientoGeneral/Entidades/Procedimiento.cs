@@ -8,13 +8,17 @@ namespace Jazani.ICL.Datos.ProcedimientoGeneral.Entidades
 {
     public class Procedimiento
     {
-        public int IdProcedimiento { get; set; }
-        public String NombreProcedimiento { get; set; }
-        public String DescripcionProcedimiento { get; set; }
+        public int Id { get; set; }
+        public String Nombre { get; set; }
+        public String Descripcion { get; set; }
         public DateTime FechaRegistro { get; set; }
         public int Estado { get; set; }
-        public int IdTipoProc { get; set; }
-        public String NombreTipoProc { get; set; }
+        public int IdTipoProcedimiento { get; set; }
+        public virtual TipoProcedimiento TipoProcedimiento { get; set; }
+        public Procedimiento() {
+            FechaRegistro = DateTime.UtcNow;
+            Estado = 1;
+        }
 
     }
 }

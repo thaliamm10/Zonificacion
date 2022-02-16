@@ -11,5 +11,6 @@ namespace Jazani.ICL.Servicios.ProcedimientoGeneral.Servicios.Abstracciones
     public interface IProcedimientoServicio
     {
         Task<OperacionDto<RespuestaSimpleDto<String>>> CrearOActualizarAsync(ProcedimientoDto procedimientoDto);
+        Task<OperacionDto<List<ProcedimientoDto>>> ListarAsync(String nombre, int estado);
     }
 }

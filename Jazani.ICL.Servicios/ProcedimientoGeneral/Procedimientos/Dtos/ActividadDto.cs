@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jazani.ICL.Servicios.General.Personas.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,9 @@ namespace Jazani.ICL.Servicios.ProcedimientoGeneral.Dtos
         public int NotificacionCorreo { get; set; }
         public int Flag { get; set; }
         public TipoActividadDto TipActividad { get; set; }
+        public AreaDto Area { get; set; }
+        public String IdUsuarioResponsable { get; set; }
+        public List<String> productos { get; set; }
 
     }
 }

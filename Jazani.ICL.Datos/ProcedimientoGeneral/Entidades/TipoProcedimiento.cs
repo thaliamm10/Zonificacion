@@ -12,6 +12,7 @@ namespace Jazani.ICL.Datos.ProcedimientoGeneral.Entidades
         public String Nombre { get; set; }
         public DateTime FechaRegistro { get; set; }
         public int Estado { get; set; }
+        public virtual ICollection<Procedimiento> Procedimiento { get; set; }
 
         public TipoProcedimiento()
         {
