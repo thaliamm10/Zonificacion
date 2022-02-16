@@ -24,7 +24,7 @@ namespace Jazani.ICL.ApiWeb.Controllers.General
             _sectorServicio = sectorServicio;
         }
 
-        /*[HttpPost("Crear")]
+        [HttpPost("Crear")]
         [RequiereAcceso()]
         public async Task<RespuestaSimpleDto<string>> CrearAsync(SectorDto peticion)
         {
@@ -57,7 +57,7 @@ namespace Jazani.ICL.ApiWeb.Controllers.General
         {
             var operacion = await _sectorServicio.ObtenerAsync(idCifrado);
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
-        }*/
+        }
 
         [HttpGet("Listar")]
         [RequiereAcceso()]
