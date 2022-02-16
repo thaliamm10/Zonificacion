@@ -117,6 +117,8 @@ namespace Jazani.ICL.Servicios.Auth.Perfiles.Servicios.Implementaciones
 
         public async Task<OperacionDto<List<PerfilDto>>> ListarAsync()
         {
+            //var perfiles = await _perfilRepositorio.ObtenerListaAsync();
+
             var usuarios = await _perfilRepositorio.ListarAsync();
 
             var dto = _mapper.Map<List<PerfilDto>>(usuarios);

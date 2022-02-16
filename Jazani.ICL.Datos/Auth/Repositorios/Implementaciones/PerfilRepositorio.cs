@@ -1,11 +1,14 @@
 ﻿using Jazani.ICL.Datos.Auth.Entidades;
+using Jazani.ICL.Datos.Auth.Procedimientos;
 using Jazani.ICL.Datos.Auth.Repositorios.Abstracciones;
 using Jazani.ICL.Datos.Infraestructura.Configuraciones.Abstracciones;
 using Jazani.ICL.Datos.Infraestructura.Contextos.Abstracciones;
 using Jazani.ICL.Datos.Infraestructura.Repositorios.Implementaciones;
 using Microsoft.EntityFrameworkCore;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,6 +63,33 @@ namespace Jazani.ICL.Datos.Auth.Repositorios.Implementaciones
             var resultados = await query.ToListAsync();
             return new Tuple<List<Perfil>, int>(resultados, total);
 
+        }
+
+        public async Task<List<ObtenerPerfiles>> ObtenerListaAsync()
+        {
+            var lista = new List<ObtenerPerfiles>();
+            var sql = "PKG_SEGURIDAD.usp_listar_perfiles";
+
+            using (var conexion = new OracleConnection(Configuracion.CadenaConexion))
+            {
+                using var comando = new OracleCommand(sql, conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                //comando.Parameters.Add(new OracleParameter("@p_nombre", OracleDbType.Varchar2, 800, usuario, ParameterDirection.Input));
+                comando.Parameters.Add(new OracleParameter("@p_lista", OracleDbType.RefCursor, ParameterDirection.Output));
+                conexion.Open();
+                using var reader = await comando.ExecuteReaderAsync(CommandBehavior.CloseConnection);
+                while (reader.Read())
+                {
+                    var data = new ObtenerPerfiles
+                    {
+                        Id = !reader.IsDBNull(reader.GetOrdinal("id_perfil")) ? reader.GetInt32(reader.GetOrdinal("id_perfil")) : 0,
+                        Nombre = !reader.IsDBNull(reader.GetOrdinal("nombre")) ? reader.GetString(reader.GetOrdinal("nombre")) : null,
+                        Descripcion = !reader.IsDBNull(reader.GetOrdinal("descripcion")) ? reader.GetString(reader.GetOrdinal("descripcion")) : null
+                    };
+                    lista.Add(data);
+                }
+            }
+            return lista;
         }
     }
 }
