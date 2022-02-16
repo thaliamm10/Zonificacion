@@ -4,6 +4,8 @@ using Jazani.ICL.Datos.Auth.Entidades.Mapeo;
 using Jazani.ICL.Datos.General.Entidades;
 using Jazani.ICL.Datos.General.Entidades.Mapeo;
 using Jazani.ICL.Datos.Infraestructura.Contextos.Abstracciones;
+using Jazani.ICL.Datos.ProcedimientoGeneral.Entidades;
+using Jazani.ICL.Datos.ProcedimientoGeneral.Entidades.Mapeo;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,7 +26,8 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
         public DbSet<DocumentoIdentidad> DocumentoIdentidad { get; set; }
         public DbSet<Persona> Personas { get; set; }
         public DbSet<Area> Areas { get; set; }
-
+        public DbSet<TipoProcedimiento> TipoProcedimientos { get; set; }
+        public DbSet<TipoActividad> TipoActividads { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -37,6 +40,8 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
             modelBuilder.ApplyConfiguration(new DocumentoIdentidadMapeo());
             modelBuilder.ApplyConfiguration(new PersonaMapeo());
             modelBuilder.ApplyConfiguration(new AreaMapeo());
+            modelBuilder.ApplyConfiguration(new TipoProcedimientoMapeo());
+            modelBuilder.ApplyConfiguration(new TipoActividadMapeo());
 
         }
     }
