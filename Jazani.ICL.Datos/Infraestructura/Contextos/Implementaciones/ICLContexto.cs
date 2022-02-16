@@ -28,6 +28,9 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
         public DbSet<Area> Areas { get; set; }
         public DbSet<TipoProcedimiento> TipoProcedimientos { get; set; }
         public DbSet<TipoActividad> TipoActividads { get; set; }
+        public DbSet<Ubigeo> Ubigeos { get; set; }
+        public DbSet<Sector> Sectores { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -42,6 +45,8 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
             modelBuilder.ApplyConfiguration(new AreaMapeo());
             modelBuilder.ApplyConfiguration(new TipoProcedimientoMapeo());
             modelBuilder.ApplyConfiguration(new TipoActividadMapeo());
+            modelBuilder.ApplyConfiguration(new UbigeoMapeo());
+            modelBuilder.ApplyConfiguration(new SectorMapeo());
 
         }
     }
