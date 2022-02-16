@@ -1,4 +1,5 @@
-﻿using Jazani.ICL.Datos.General.Entidades;
+﻿using Jazani.ICL.Datos.Auth.Entidades;
+using Jazani.ICL.Datos.General.Entidades;
 using Jazani.ICL.Datos.General.Repositorio.Abstracciones;
 using Jazani.ICL.Datos.Infraestructura.Configuraciones.Abstracciones;
 using Jazani.ICL.Datos.Infraestructura.Contextos.Abstracciones;
@@ -23,5 +24,7 @@ namespace Jazani.ICL.Datos.General.Repositorio.Implementaciones
        => await UnidadDeTrabajo.Personas
                 .Include(e => e.Usuario)
                 .Where(e => e.Usuario.NombreUsuario == nombreUsuario).FirstOrDefaultAsync();
+
+     
     }
 }

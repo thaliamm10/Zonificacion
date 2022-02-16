@@ -18,7 +18,9 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
         public ICLContexto(DbContextOptions opciones) : base(opciones) { }
 
         public DbSet<Usuario> Usuarios { get; set; }
+
         public DbSet<Perfil> Perfiles { get; set; }
+
         public DbSet<DocumentoIdentidad> DocumentoIdentidad { get; set; }
         public DbSet<Persona> Personas { get; set; }
         public DbSet<Area> Areas { get; set; }
@@ -30,7 +32,9 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
 
             //modelBuilder.HasDefaultSchema("SISGESPRE");
             modelBuilder.ApplyConfiguration(new UsuarioMapeo());
+
             modelBuilder.ApplyConfiguration(new PerfilMapeo());
+
             modelBuilder.ApplyConfiguration(new DocumentoIdentidadMapeo());
             modelBuilder.ApplyConfiguration(new PersonaMapeo());
             modelBuilder.ApplyConfiguration(new AreaMapeo());
