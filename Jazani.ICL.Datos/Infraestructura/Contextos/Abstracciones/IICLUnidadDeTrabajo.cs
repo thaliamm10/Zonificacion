@@ -17,5 +17,6 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Abstracciones
         public DbSet<DocumentoIdentidad> DocumentoIdentidad { get; set; }
         public DbSet<Persona> Personas { get; set; }
         public DbSet<Area> Areas { get; set; }
+        public DbSet<Ubigeo> Ubigeos { get; set; }
     }
 }
