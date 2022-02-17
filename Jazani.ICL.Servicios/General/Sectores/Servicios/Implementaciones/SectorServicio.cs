@@ -26,7 +26,7 @@ namespace Jazani.ICL.Servicios.General.Sectores.Servicios.Implementaciones
             _sectorRepositorio = sectorRepositorio;
         }
 
-        /*public async Task<OperacionDto<RespuestaSimpleDto<string>>> CrearOActualizarAsync(SectorDto peticion)
+        public async Task<OperacionDto<RespuestaSimpleDto<string>>> CrearOActualizarAsync(SectorDto peticion)
         {
             var operacionValidacion = ValidacionUtilitario.ValidarModelo<RespuestaSimpleDto<string>>(peticion);
 
@@ -80,9 +80,9 @@ namespace Jazani.ICL.Servicios.General.Sectores.Servicios.Implementaciones
                     Mensaje = "Se guardó con éxito."
                 });
 
-        }*/
+        }
 
-        /*public async Task<OperacionDto<RespuestaSimpleDto<string>>> EliminarAsync(string idSectorCifrado)
+        public async Task<OperacionDto<RespuestaSimpleDto<string>>> EliminarAsync(string idSectorCifrado)
         {
             var id = RijndaelUtilitario.DecryptRijndaelFromUrl<long>(idSectorCifrado);
             var entidad = await _sectorRepositorio.BuscarPorIdYNoBorradoAsync(id);
@@ -100,9 +100,9 @@ namespace Jazani.ICL.Servicios.General.Sectores.Servicios.Implementaciones
                 {
                     Mensaje = "Eliminado correctamente"
                 });
-        }*/
+        }
 
-        /*public async Task<OperacionDto<SectorDto>> ObtenerAsync(string idPerfilCifrado)
+        public async Task<OperacionDto<SectorDto>> ObtenerAsync(string idPerfilCifrado)
         {
             var id = RijndaelUtilitario.DecryptRijndaelFromUrl<long>(idPerfilCifrado);
             var entidad = await _sectorRepositorio.BuscarPorIdAsync(id);
@@ -113,7 +113,7 @@ namespace Jazani.ICL.Servicios.General.Sectores.Servicios.Implementaciones
 
             var dto = _mapper.Map<SectorDto>(entidad);
             return new OperacionDto<SectorDto>(dto);
-        }*/
+        }
 
         public async Task<OperacionDto<List<SectorDto>>> ListarAsync()
         {

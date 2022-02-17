@@ -20,6 +20,8 @@ namespace Jazani.ICL.Datos.General.Repositorio.Implementaciones
         public override async Task<Sector> BuscarPorIdYNoBorradoAsync(long id)
         => await UnidadDeTrabajo.Sectores.Where(e => e.Id == id && e.Estado == 1).FirstOrDefaultAsync();
 
+        public override async Task<Sector> BuscarPorIdAsync(long id)
+        => await UnidadDeTrabajo.Sectores.Where(e => e.Id == id).FirstOrDefaultAsync();
         public async Task<Sector> BuscarPorCodigoAsync(string codigo)
         => await UnidadDeTrabajo.Sectores.Where(x => x.Codigo == codigo).FirstOrDefaultAsync();
 
