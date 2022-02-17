@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Jazani.ICL.Datos.Zonificacion.Entidades;
 
 namespace Jazani.ICL.Datos.Infraestructura.Contextos.Abstracciones
 {
@@ -19,5 +20,7 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Abstracciones
         public DbSet<DocumentoIdentidad> DocumentoIdentidad { get; set; }
         public DbSet<Persona> Personas { get; set; }
         public DbSet<Area> Areas { get; set; }
+
+        public DbSet<ZonificacionParametro> ZonificacionParametros { get; set; }
     }
 }

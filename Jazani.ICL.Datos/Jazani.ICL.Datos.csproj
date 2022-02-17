@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="General\Procedimientos\" />
+    <Folder Include="Zonificacion\Procedimientos\" />
+    <Folder Include="Zonificacion\Repositorios\Implementaciones\" />
   </ItemGroup>
 
 </Project>

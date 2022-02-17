@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Jazani.ICL.Datos.Zonificacion.Entidades;
+using Jazani.ICL.Datos.Zonificacion.Entidades.Mapeo;
 
 namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
 {
@@ -24,6 +26,7 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
         public DbSet<DocumentoIdentidad> DocumentoIdentidad { get; set; }
         public DbSet<Persona> Personas { get; set; }
         public DbSet<Area> Areas { get; set; }
+        public DbSet<ZonificacionParametro> ZonificacionParametros { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,6 +40,7 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
             modelBuilder.ApplyConfiguration(new DocumentoIdentidadMapeo());
             modelBuilder.ApplyConfiguration(new PersonaMapeo());
             modelBuilder.ApplyConfiguration(new AreaMapeo());
+            modelBuilder.ApplyConfiguration(new ZonificacionParametroMapeo());
 
         }
     }
