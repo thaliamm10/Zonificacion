@@ -31,6 +31,8 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
         public DbSet<Ubigeo> Ubigeos { get; set; }
         public DbSet<Sector> Sectores { get; set; }
 
+        public DbSet<Tipo_Norma> Tipo_Normas { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -47,6 +49,7 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
             modelBuilder.ApplyConfiguration(new TipoActividadMapeo());
             modelBuilder.ApplyConfiguration(new UbigeoMapeo());
             modelBuilder.ApplyConfiguration(new SectorMapeo());
+            modelBuilder.ApplyConfiguration(new Tipo_NormaMapeo());
 
         }
     }
