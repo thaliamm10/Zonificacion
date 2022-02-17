@@ -20,7 +20,7 @@ namespace Jazani.ICL.Datos.Zonificacion.Repositorios.Implementaciones
             => await UnidadDeTrabajo.ZonificacionParametros.Where(e => e.Id == id && e.Estado == 1).FirstOrDefaultAsync();
 
         public override async Task<ZonificacionParametro> BuscarPorIdAsync(long id)
-            => await UnidadDeTrabajo.ZonificacionParametros.Where(e => e.Id == id).FirstOrDefaultAsync();
+            => await UnidadDeTrabajo.ZonificacionParametros.Where(e => e.Id == id ).FirstOrDefaultAsync();
 
         public async Task<ZonificacionParametro> BuscarPorZonificacionAsync(string zonificacion)
             => await UnidadDeTrabajo.ZonificacionParametros.Where(x => x.Zonificacion == zonificacion).FirstOrDefaultAsync();

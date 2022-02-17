@@ -25,7 +25,7 @@ namespace Jazani.ICL.ApiWeb.Controllers.Zonificacion
         // POST: ZonificacionParametro
 
         [HttpPost("Crear")]
-       // [RequiereAcceso()]
+       [RequiereAcceso()]
 
         public async Task<RespuestaSimpleDto<string>> CrearAsync(ZonificacionParametroDto peticion)
         {
@@ -35,7 +35,7 @@ namespace Jazani.ICL.ApiWeb.Controllers.Zonificacion
         }
 
         [HttpPut("Actualizar/{idCifrado}")]
-       // [RequiereAcceso()]
+        [RequiereAcceso()]
         public async Task<RespuestaSimpleDto<string>> ActualizarAsync(string idCifrado, ZonificacionParametroDto peticion)
         {
             VerificarIfEsBuenJson(peticion);
@@ -45,7 +45,7 @@ namespace Jazani.ICL.ApiWeb.Controllers.Zonificacion
         }
 
         [HttpDelete("Eliminar/{idCifrado}")]
-       // [RequiereAcceso()]
+        [RequiereAcceso()]
         public async Task<RespuestaSimpleDto<string>> EliminarAsync(string idCifrado)
         {
             var operacion = await _zonificacionParametroServicio.EliminarAsync(idCifrado);
@@ -53,21 +53,21 @@ namespace Jazani.ICL.ApiWeb.Controllers.Zonificacion
         }
 
         [HttpGet("Obtener/{idCifrado}")] 
-        // [RequiereAcceso()]
+        [RequiereAcceso()]
         public async Task<ZonificacionParametroDto> ObtenerAsync(string idCifrado)
         {
             var operacion = await _zonificacionParametroServicio.ObtenerAsync(idCifrado);
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
         [HttpGet("Listar")]
-       // [RequiereAcceso()]
+       [RequiereAcceso()]
         public async Task<List<ZonificacionParametroDto>> ListarAsync()
         {
             var operacion = await _zonificacionParametroServicio.ListarAsync();
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
         [HttpPost("ListarPaginado")]
-       // [RequiereAcceso()]
+        [RequiereAcceso()]
         public async Task<JQueryDatatableDto<ZonificacionParametroDto>> ListarPaginadoAsync(ZonificacionParamtroPaginadoDto peticion)
         {
             VerificarIfEsBuenJson(peticion);

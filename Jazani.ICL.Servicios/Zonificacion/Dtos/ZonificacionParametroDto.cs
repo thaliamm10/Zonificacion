@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Jazani.ICL.Datos.Zonificacion.Entidades;
 
 namespace Jazani.ICL.Servicios.Zonificacion.Dtos
 {
@@ -18,6 +19,9 @@ namespace Jazani.ICL.Servicios.Zonificacion.Dtos
         public string CodigoUbigeo { get; set; }
         // FK ID_TIPO_NORMA
         public long IdTipoNorma { get; set; }
+        // TIPO_NORMA
+        public TipoNormativa TipoNormativa { get; set; }
+        public long TipoNorma { get; set; }
         // NUMERO_NORMATIVA
         public string NumeroNormativa { get; set; }
         // FK ID_SECTOR

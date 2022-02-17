@@ -50,6 +50,7 @@ namespace Jazani.ICL.Servicios.Zonificacion.Servicios.Implementaciones
             entidad.NumeroNormativa = peticion.NumeroNormativa;
             entidad.IdSector = peticion.IdSector;
             entidad.DensidadNeta = peticion.DensidadNeta;
+            entidad.AreaLoteMinNormativo = peticion.AreaLoteMinNormativo;
             entidad.FrenteLoteMinNormativo = peticion.FrenteLoteMinNormativo;
             entidad.AlturaMaxEdificacionPiso = peticion.AlturaMaxEdificacionPiso;
             entidad.AlturaMaxEdificacion = peticion.AlturaMaxEdificacion;
