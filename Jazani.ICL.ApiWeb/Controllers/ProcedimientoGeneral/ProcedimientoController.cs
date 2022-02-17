@@ -26,6 +26,9 @@ namespace Jazani.ICL.ApiWeb.Controllers.ProcedimientoGeneral
         [HttpGet("Listar")]
         public async Task<List<ProcedimientoDto>> ListarAsync()
         {
+            List<ProcedimientoDto> lista = new List<ProcedimientoDto>();
+            lista.Add(new ProcedimientoDto());
+
             return null;
         }
 
