@@ -27,9 +27,14 @@ namespace Jazani.ICL.Datos.Zonificacion.Repositorios.Implementaciones
 
 
         public async Task<List<ZonificacionParametro>> ListarAsync()
-            => await UnidadDeTrabajo.ZonificacionParametros.Where(e => e.Estado == 1).ToListAsync();
+            => await UnidadDeTrabajo.ZonificacionParametros.Where(e => e.Estado == 1)
+                .Include(e=>e.TipoNormativa)
+                .Include(e=>e.Ubigeo)
+                .Include(e=>e.Sector)
+                .ToListAsync();
 
-        public async Task<Tuple<List<ZonificacionParametro>, int>> ListarPaginadoAsync(string orden, int start, int length, string zonificacion = null)
+        public async Task<Tuple<List<ZonificacionParametro>, int>> ListarPaginadoAsync(string orden, int start, int length, 
+            string codigo, string zonificacion,string abreviatura, string numNormativa, long idTipoNormativa, long codUbigeo)
         {
             var query = UnidadDeTrabajo.ZonificacionParametros
                 .Where(e =>
@@ -60,5 +65,6 @@ namespace Jazani.ICL.Datos.Zonificacion.Repositorios.Implementaciones
             var resultados = await query.ToListAsync();
             return new Tuple<List<ZonificacionParametro>, int>(resultados, total);
         }
-    }
+
+      
 }

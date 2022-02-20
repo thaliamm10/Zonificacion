@@ -60,7 +60,7 @@ namespace Jazani.ICL.ApiWeb.Controllers.Auth
         }
 
         [HttpGet("Listar")]
-        [RequiereAcceso()]
+        //[RequiereAcceso()]
         public async Task<List<PerfilDto>> ListarAsync()
         {
             var operacion = await _perfilServicio.ListarAsync();

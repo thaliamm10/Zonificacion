@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Jazani.ICL.Datos.General.Entidades;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Jazani.ICL.Datos.Zonificacion.Entidades
 {
@@ -53,9 +58,11 @@ namespace Jazani.ICL.Datos.Zonificacion.Entidades
 
         public virtual Sector Sector { get; set; }
 
-        public virtual TipoNormativa TipoNormativa { get; set; }
+        public virtual TipoNormativ TipoNormativa { get; set; }
 
         public virtual Ubigeo Ubigeo { get; set; }
+        //public virtual TipoNorma TipoNorma { get; set; }
+        public virtual Sector Sector { get; set; }
 
         public ZonificacionParametro()
         {

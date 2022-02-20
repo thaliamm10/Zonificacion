@@ -60,7 +60,7 @@ namespace Jazani.ICL.ApiWeb.Controllers.Zonificacion
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
         [HttpGet("Listar")]
-       [RequiereAcceso()]
+      // [RequiereAcceso()]
         public async Task<List<ZonificacionParametroDto>> ListarAsync()
         {
             var operacion = await _zonificacionParametroServicio.ListarAsync();

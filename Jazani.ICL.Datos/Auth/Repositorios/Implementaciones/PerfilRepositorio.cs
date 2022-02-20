@@ -21,10 +21,8 @@ namespace Jazani.ICL.Datos.Auth.Repositorios.Implementaciones
 
         public override async Task<Perfil> BuscarPorIdYNoBorradoAsync(long id)
         => await UnidadDeTrabajo.Perfiles.Where(e => e.Id == id && e.Estado == 1).FirstOrDefaultAsync();
-
         public override async Task<Perfil> BuscarPorIdAsync(long id)
         => await UnidadDeTrabajo.Perfiles.Where(e => e.Id == id).FirstOrDefaultAsync();
-
         public async Task<Perfil> BuscarPorNombreAsync(string nombre)
         => await UnidadDeTrabajo.Perfiles.Where(x => x.Nombre == nombre).FirstOrDefaultAsync();
 

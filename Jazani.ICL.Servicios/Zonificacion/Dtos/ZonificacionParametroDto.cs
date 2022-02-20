@@ -1,6 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Jazani.ICL.Datos.General.Entidades;
 using Jazani.ICL.Datos.Zonificacion.Entidades;
+using Jazani.ICL.Servicios.General.Sectores.Dtos;
+using Jazani.ICL.Servicios.General.Tipo_Norma.Dtos;
+using Jazani.ICL.Servicios.General.Ubigeo.Dto;
 
 namespace Jazani.ICL.Servicios.Zonificacion.Dtos
 {
@@ -19,9 +23,7 @@ namespace Jazani.ICL.Servicios.Zonificacion.Dtos
         public string CodigoUbigeo { get; set; }
         // FK ID_TIPO_NORMA
         public long IdTipoNorma { get; set; }
-        // TIPO_NORMA
-        public TipoNormativa TipoNormativa { get; set; }
-        public long TipoNorma { get; set; }
+  
         // NUMERO_NORMATIVA
         public string NumeroNormativa { get; set; }
         // FK ID_SECTOR
@@ -56,6 +58,10 @@ namespace Jazani.ICL.Servicios.Zonificacion.Dtos
         public DateTime FechaRegistro { get; set; }
         // ESTADO
         public int Estado { get; set; }
+        // TIPO_NORMA
+        public TipoNormaDto TipoNorma { get; set; }
+        public UbigeoDto Ubigeo { get; set; }
+        public SectorDto Sector { get; set; }
 
     }
 }

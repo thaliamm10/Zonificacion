@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Jazani.ICL.Datos.CompendioNormas.Entidades;
 
 namespace Jazani.ICL.Datos.General.Entidades
 {
@@ -15,6 +16,7 @@ namespace Jazani.ICL.Datos.General.Entidades
         public int Estado { get; set; }
 
         public virtual ICollection<Persona> Persona { get; set; }
+        public virtual ICollection<NormaInteres> NormaInteres { get; set; }
 
         public Area()
         {

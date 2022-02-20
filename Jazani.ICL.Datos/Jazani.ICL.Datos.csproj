@@ -19,6 +19,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CompendioNormas\Repositorios\Abstracciones\" />
+    <Folder Include="CompendioNormas\Repositorios\Implementaciones\" />
     <Folder Include="General\Procedimientos\" />
     <Folder Include="Zonificacion\Procedimientos\" />
     <Folder Include="Zonificacion\Repositorios\Implementaciones\" />

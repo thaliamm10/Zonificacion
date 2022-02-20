@@ -10,8 +10,6 @@ namespace Jazani.ICL.Servicios.Zonificacion.Mapeo
         {
             CreateMap<ZonificacionParametro, ZonificacionParametroDto>()
                 .AfterMap<ZonificacionParametroAction>();
-
-            CreateMap<ZonificacionParametroDto, ZonificacionParametro>();
         }
     }
 }

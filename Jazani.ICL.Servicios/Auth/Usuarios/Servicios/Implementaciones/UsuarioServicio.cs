@@ -48,7 +48,7 @@ namespace Jazani.ICL.Servicios.Auth.Usuarios.Servicios.Implementaciones
             var usuario = new Usuario();
 
             var idPerfil = RijndaelUtilitario.DecryptRijndaelFromUrl<long>(peticion.Perfil.Id);
-            usuario.Id = 1;
+            usuario.Id = 2;
             usuario.NombreUsuario = peticion.NombreUsuario;
             usuario.IdPerfil = idPerfil;
             usuario.Clave = Md5Utilitario.Cifrar(peticion.Clave, _seguridadConfiguracion.PasswordSalt);
