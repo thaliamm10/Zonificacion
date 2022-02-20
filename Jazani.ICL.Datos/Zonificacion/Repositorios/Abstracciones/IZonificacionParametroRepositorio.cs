@@ -13,9 +13,9 @@ namespace Jazani.ICL.Datos.Zonificacion.Repositorios.Abstracciones
 
         Task<List<ZonificacionParametro>> ListarAsync();
         Task<Tuple<List<ZonificacionParametro>, int>> ListarPaginadoAsync(string orden, int start,
-            int length,string codigo, string zonificacion, string abreviatura,
-            string numNormativa, long idTipoNormativa, long codUbigeo
+            int length,string zonificacion=null
            );
 
     }
 }
+

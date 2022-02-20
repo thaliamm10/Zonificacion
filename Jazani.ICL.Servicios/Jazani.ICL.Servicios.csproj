@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="General\NormaInteres\**" />
+    <EmbeddedResource Remove="General\NormaInteres\**" />
+    <None Remove="General\NormaInteres\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Jazani.ICL.Datos\Jazani.ICL.Datos.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -26,7 +32,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Zonificacion\Dtos\" />
+    <Folder Include="CompendioNormas\Servicios\Implementaciones\" />
+    <Folder Include="General\Area\Servicios\Abstracciones\" />
+    <Folder Include="General\Area\Servicios\Implementaciones\" />
+    <Folder Include="General\Documento\Dtos\" />
+    <Folder Include="General\EstadoNorma\Dtos\" />
+    <Folder Include="General\Modulo\Dtos\" />
+    <Folder Include="General\Naturaleza\Dtos\" />
+    <Folder Include="General\Naturaleza\Mapeo\" />
     <Folder Include="Zonificacion\Mapeo\" />
     <Folder Include="Zonificacion\Servicios\Abstracciones\" />
     <Folder Include="Zonificacion\Servicios\Implementaciones\" />

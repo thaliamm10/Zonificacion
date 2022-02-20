@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using Jazani.ICL.Datos.CompendioNormas.Entidades;
 
-namespace Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo
+namespace Jazani.ICL.Datos.General.Entidades
 {
-    public class Naturaleza
+    public class Modulos
     {
-        //ID_NATURALEZA, CODIGO, DESCRIPCION, FECHA_REGISTRO,
-        //
         public long Id { get; set; }
         public string Codigo { get; set; }
         public string Descripcion { get; set; }
         public DateTime FechaRegistro { get; set; }
         public int Estado { get; set; }
-        public virtual ICollection<NormaInteres> NormaInteres { get; set; }
-        public Naturaleza()
+        //
+        public virtual ICollection<NormaInteresModulo> NormaInteresModulo { get; set; }
+        public Modulos()
         {
             FechaRegistro = DateTime.UtcNow;
             Estado = 1;

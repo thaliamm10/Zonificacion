@@ -1,4 +1,4 @@
-﻿using Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo;
+﻿using Jazani.ICL.Datos.CompendioNormas.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

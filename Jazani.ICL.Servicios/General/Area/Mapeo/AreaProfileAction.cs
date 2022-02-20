@@ -15,6 +15,7 @@ namespace Jazani.ICL.Servicios.General.Personas.Mapeo
         public void Process(Area source, AreaDto destination, ResolutionContext context)
         {
             destination.Id = RijndaelUtilitario.EncryptRijndaelToUrl(source.Id);
+
         }
     }
 }

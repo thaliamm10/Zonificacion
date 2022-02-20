@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo
+namespace Jazani.ICL.Datos.CompendioNormas.Entidades
 {
     public class NormaDiaDetalle
     {

@@ -9,7 +9,7 @@ namespace Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo
         {
             builder.ToTable("NORMA_INTERES_MODULO");
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.Id).HasColumnName("ID_NORMA_INTERES");
+            builder.Property(t => t.Id).HasColumnName("ID_NORMA_INTERES_MODULO");
             builder.Property(e => e.IdModulo).HasColumnName("ID_MODULO");
             builder.Property(e => e.IdNormaInteres).HasColumnName("ID_NORMA_INTERES");
             builder.Property(e => e.FechaRegistro).HasColumnName("FECHA_REGISTRO");
@@ -24,4 +24,4 @@ namespace Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo
         }
     }
 }
- 
+

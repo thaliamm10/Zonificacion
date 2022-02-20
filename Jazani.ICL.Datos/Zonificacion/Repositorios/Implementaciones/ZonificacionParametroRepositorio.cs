@@ -11,30 +11,35 @@ using System.Threading.Tasks;
 
 namespace Jazani.ICL.Datos.Zonificacion.Repositorios.Implementaciones
 {
-    public class ZonificacionParametroRepositorio : ICLRepositorio<ZonificacionParametro, long>, IZonificacionParametroRepositorio
+    public class ZonificacionParametroRepositorio : ICLRepositorio<ZonificacionParametro, long>,
+        IZonificacionParametroRepositorio
 
     {
-        public ZonificacionParametroRepositorio(IICLUnidadDeTrabajo unidadDeTrabajo, IICLConfiguracion configuracion) : base(unidadDeTrabajo, configuracion) { }
+        public ZonificacionParametroRepositorio(IICLUnidadDeTrabajo unidadDeTrabajo, IICLConfiguracion configuracion) :
+            base(unidadDeTrabajo, configuracion)
+        {
+        }
 
         public override async Task<ZonificacionParametro> BuscarPorIdYNoBorradoAsync(long id)
-            => await UnidadDeTrabajo.ZonificacionParametros.Where(e => e.Id == id && e.Estado == 1).FirstOrDefaultAsync();
+            => await UnidadDeTrabajo.ZonificacionParametros.Where(e => e.Id == id && e.Estado == 1)
+                .FirstOrDefaultAsync();
 
         public override async Task<ZonificacionParametro> BuscarPorIdAsync(long id)
-            => await UnidadDeTrabajo.ZonificacionParametros.Where(e => e.Id == id ).FirstOrDefaultAsync();
+            => await UnidadDeTrabajo.ZonificacionParametros.Where(e => e.Id == id).FirstOrDefaultAsync();
 
         public async Task<ZonificacionParametro> BuscarPorZonificacionAsync(string zonificacion)
-            => await UnidadDeTrabajo.ZonificacionParametros.Where(x => x.Zonificacion == zonificacion).FirstOrDefaultAsync();
-
+            => await UnidadDeTrabajo.ZonificacionParametros.Where(x => x.Zonificacion == zonificacion)
+                .FirstOrDefaultAsync();
 
         public async Task<List<ZonificacionParametro>> ListarAsync()
             => await UnidadDeTrabajo.ZonificacionParametros.Where(e => e.Estado == 1)
-                .Include(e=>e.TipoNormativa)
-                .Include(e=>e.Ubigeo)
-                .Include(e=>e.Sector)
+                .Include(e => e.TipoNormativa)
+                .Include(e => e.Ubigeo)
+                .Include(e => e.Sector)
                 .ToListAsync();
 
-        public async Task<Tuple<List<ZonificacionParametro>, int>> ListarPaginadoAsync(string orden, int start, int length, 
-            string codigo, string zonificacion,string abreviatura, string numNormativa, long idTipoNormativa, long codUbigeo)
+        public async Task<Tuple<List<ZonificacionParametro>, int>> ListarPaginadoAsync(string orden, int start,
+            int length, string zonificacion)
         {
             var query = UnidadDeTrabajo.ZonificacionParametros
                 .Where(e =>
@@ -65,6 +70,6 @@ namespace Jazani.ICL.Datos.Zonificacion.Repositorios.Implementaciones
             var resultados = await query.ToListAsync();
             return new Tuple<List<ZonificacionParametro>, int>(resultados, total);
         }
+    }
 
-      
 }

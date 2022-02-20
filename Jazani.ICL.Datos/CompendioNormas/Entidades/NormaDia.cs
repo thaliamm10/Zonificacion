@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Jazani.ICL.Datos.General.Entidades;
 
-namespace Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo
+namespace Jazani.ICL.Datos.CompendioNormas.Entidades
 {
     public class NormaDia
     {

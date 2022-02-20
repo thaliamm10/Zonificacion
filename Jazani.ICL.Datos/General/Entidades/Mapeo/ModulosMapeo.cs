@@ -1,12 +1,11 @@
-﻿using Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Jazani.ICL.Datos.General.Entidades.Mapeo
 {
-    public class ModuloMapeo : IEntityTypeConfiguration<Modulo>
+    public class ModulosMapeo : IEntityTypeConfiguration<Modulos>
     {
-        public void Configure(EntityTypeBuilder<Modulo> builder)
+        public void Configure(EntityTypeBuilder<Modulos> builder)
         {
             builder.ToTable("MODULO");
             builder.HasKey(t => t.Id);

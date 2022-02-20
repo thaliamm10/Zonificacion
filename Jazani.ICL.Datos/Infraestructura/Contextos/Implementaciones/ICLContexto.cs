@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Jazani.ICL.Datos.CompendioNormas;
+using Jazani.ICL.Datos.CompendioNormas.Entidades;
+using Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo;
 using Jazani.ICL.Datos.Zonificacion.Entidades.Mapeo;
 
 namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
@@ -28,6 +31,18 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
         public DbSet<DocumentoIdentidad> DocumentoIdentidad { get; set; }
         public DbSet<Persona> Personas { get; set; }
         public DbSet<Area> Areas { get; set; }
+        public DbSet<Autoridad> Autoridades { get; set; }
+        public DbSet<Documento> Documentos { get; set; }
+        public DbSet<EstadoNorma> EstadoNormas { get; set; }
+        public DbSet<Modulos> Modulos { get; set; }
+        public DbSet<Naturalezas> Naturalezas { get; set; }
+        public DbSet<NormaDia> NormaDias { get; set; }
+        public DbSet<NormaDiaDetalle> NormaDiaDetalles { get; set; }
+        public DbSet<NormaDiaDocumento> NormaDiaDocumentos { get; set; }
+        public DbSet<NormaInteres> NormaInteress { get; set; }
+        public DbSet<NormaInteresDocumento> NormaInteresDocumentos { get; set; }
+        public DbSet<NormaInteresModulo> NormaInteresModulos { get; set; }
+        public DbSet<ZonificacionParametroNormaInteres> ZonificacionParametroNormaInteress { get; set; }
         public DbSet<TipoProcedimiento> TipoProcedimientos { get; set; }
         public DbSet<TipoActividad> TipoActividads { get; set; }
         public DbSet<Ubigeo> Ubigeos { get; set; }
@@ -53,7 +68,21 @@ namespace Jazani.ICL.Datos.Infraestructura.Contextos.Implementaciones
             modelBuilder.ApplyConfiguration(new SectorMapeo());
             modelBuilder.ApplyConfiguration(new ProcedimientoMapeo());
             modelBuilder.ApplyConfiguration(new Tipo_NormaMapeo());
+
+            modelBuilder.ApplyConfiguration(new AutoridadMapeo());
+            modelBuilder.ApplyConfiguration(new DocumentoMapeo());
+            modelBuilder.ApplyConfiguration(new EstadoNormaMapeo());
+            modelBuilder.ApplyConfiguration(new ModulosMapeo());
+            modelBuilder.ApplyConfiguration(new NaturalezaMapeo());
+            modelBuilder.ApplyConfiguration(new NormaDiaMapeo());
+            modelBuilder.ApplyConfiguration(new NormaDiaDetalleMapeo());
+            modelBuilder.ApplyConfiguration(new NormaDiaDocumentoMapeo());
+            modelBuilder.ApplyConfiguration(new NormaInteresMapeo());
+            modelBuilder.ApplyConfiguration(new NormaInteresDocumentoMapeo());
+            modelBuilder.ApplyConfiguration(new NormaInteresModuloMapeo());
+
             modelBuilder.ApplyConfiguration(new ZonificacionParametroMapeo());
+            modelBuilder.ApplyConfiguration(new ZonificacionParametroNormaInteresMapeo());
 
         }
     }

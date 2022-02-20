@@ -1,12 +1,13 @@
-﻿using Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo;
+﻿using Jazani.ICL.Datos.CompendioNormas.Entidades;
+using Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Jazani.ICL.Datos.General.Entidades.Mapeo
 {
-    public class NaturalezaMapeo : IEntityTypeConfiguration<Naturaleza>
+    public class NaturalezaMapeo : IEntityTypeConfiguration<Naturalezas>
     {
-        public void Configure(EntityTypeBuilder<Naturaleza> builder)
+        public void Configure(EntityTypeBuilder<Naturalezas> builder)
         {
             builder.ToTable("NATURALEZA");
             builder.HasKey(t => t.Id);

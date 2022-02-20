@@ -1,12 +1,13 @@
 ﻿using System;
 using Jazani.ICL.Datos.Auth.Entidades;
-using Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo;
+using Jazani.ICL.Datos.General.Entidades;
 
 namespace Jazani.ICL.Datos.CompendioNormas.Entidades
 {
     public class NormaInteresDocumento
     {
         public long Id { get; set; }
+        public long IdNormaInteres { get; set; }
         public long IdDocumento { get; set; }
         public long IdNormaDiaDocumento { get; set; }
         public long IdUsuario { get; set; }

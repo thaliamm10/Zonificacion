@@ -56,14 +56,15 @@ namespace Jazani.ICL.Datos.Zonificacion.Entidades
         // ESTADO
         public int Estado { get; set; }
 
-        public virtual Sector Sector { get; set; }
-
-        public virtual TipoNormativ TipoNormativa { get; set; }
+        public virtual Tipo_Norma TipoNormativa { get; set; }
 
         public virtual Ubigeo Ubigeo { get; set; }
         //public virtual TipoNorma TipoNorma { get; set; }
         public virtual Sector Sector { get; set; }
 
+        // 
+        public virtual ICollection<ZonificacionParametroNormaInteres> ZonificacionParametroNormaInteres { get; set; }
+        //
         public ZonificacionParametro()
         {
             FechaRegistro = DateTime.UtcNow;

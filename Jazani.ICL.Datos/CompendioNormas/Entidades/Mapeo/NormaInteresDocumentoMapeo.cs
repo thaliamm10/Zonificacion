@@ -9,8 +9,9 @@ namespace Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo
         {
             builder.ToTable("NORMA_INTERES_DOCUMENTO");
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.Id).HasColumnName("ID_NORMA_INTERES");
+            builder.Property(t => t.Id).HasColumnName("ID_NORMA_INTERES_DOCUMENTO");
             builder.Property(e => e.IdDocumento).HasColumnName("ID_DOCUMENTO");
+            builder.Property(e => e.IdNormaInteres).HasColumnName("ID_NORMA_INTERES");
             builder.Property(e => e.IdNormaDiaDocumento).HasColumnName("ID_NORMA_DIA_DOCUMENTO");
             builder.Property(e => e.IdUsuario).HasColumnName("ID_USUARIO");
             builder.Property(e => e.FechaModificacion).HasColumnName("FECHA_MODIFICACION");

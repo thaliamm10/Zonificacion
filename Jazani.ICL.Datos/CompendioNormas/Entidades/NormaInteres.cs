@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Jazani.ICL.Datos.Auth.Entidades;
-using Jazani.ICL.Datos.CompendioNormas.Entidades.Mapeo;
 using Jazani.ICL.Datos.General.Entidades;
+using Jazani.ICL.Datos.Zonificacion.Entidades;
 
 namespace Jazani.ICL.Datos.CompendioNormas.Entidades
 {
@@ -13,18 +13,18 @@ namespace Jazani.ICL.Datos.CompendioNormas.Entidades
         public long IdNormaDiaDetalle { get; set; }
         public string Nombre { get; set; }
         public string Sumilla { get; set; }
-        public string IdUsuario { get; set; }
+        public long? IdUsuario { get; set; }
         public int EsNormaInterna { get; set; }
         public DateTime FechaPublicacion { get; set; }
         public DateTime FechaVigencia { get; set; }
-        public long IdTipoNorma { get; set; }
+        public long? IdTipoNorma { get; set; }
         public long IdNaturaleza { get; set; }
-        public long IdAutoridad { get; set; }
+        public long? IdAutoridad { get; set; }
         public string PaginasInteres { get; set; }
         public string observacion { get; set; }
-        public long IdArea { get; set; }
-        public long IdEstadoNorma { get; set; }
-        public long IdNormaDerogado { get; set; }
+        public int? IdArea { get; set; }
+        public long? IdEstadoNorma { get; set; }
+        public long? IdNormaDerogado { get; set; }
 
         public string ArticuloNormaDerogado { get; set; }
 
@@ -32,14 +32,14 @@ namespace Jazani.ICL.Datos.CompendioNormas.Entidades
 
         public DateTime FechaRegistro { get; set; }
         public int Estado { get; set; }
-
+        // Relaciones
         public virtual NormaDiaDetalle NormaDiaDetalle { get; set; }
 
         public virtual Usuario Usuario { get; set; }
 
         public virtual Tipo_Norma TipoNorma { get; set; }
 
-        public virtual Naturaleza Naturaleza { get; set; }
+        public virtual Naturalezas Naturaleza { get; set; }
 
         public virtual Autoridad Autoridad { get; set; }
 
@@ -47,11 +47,11 @@ namespace Jazani.ICL.Datos.CompendioNormas.Entidades
 
         public virtual EstadoNorma EstadoNorma { get; set; }
 
-        public virtual NormaInteres NormaDerogada { get; set; }
 
         //
         public virtual ICollection<NormaInteresModulo> NormaInteresModulo { get; set; }
-        
+
+        public virtual ICollection<ZonificacionParametroNormaInteres> ZonificacionParametroNormaInteres { get; set; }
         public NormaInteres()
         {
             FechaRegistro = DateTime.UtcNow;
@@ -59,7 +59,3 @@ namespace Jazani.ICL.Datos.CompendioNormas.Entidades
         }
     }
 }
-
-// ID_NORMA_INTERES, ID_NORMA_DIA_DETALLE, NOMBRE, SUMILLA, ID_USUARIO, ES_NORMA_INTERNA, FECHA_PUBLICACION,
-//FECHA_VIGENCIA, ID_TIPO_NORMA, ID_NATURALEZA, ID_AUTORIDAD, PAGINAS_INTERES, OBSERVACION, ID_AREA,
-//ID_ESTADO_NORMA, ID_NORMA_DEROGADO, ARTICULO_NORMA_DEROGADO, OBSERVACION_NORMA_DEROGADO, FECHA_REGISTRO, ESTADO

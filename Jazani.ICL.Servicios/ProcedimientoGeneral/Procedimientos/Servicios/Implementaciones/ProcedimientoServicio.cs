@@ -25,7 +25,7 @@ namespace Jazani.ICL.Servicios.ProcedimientoGeneral.Procedimientos.Servicios.Imp
             _procedimientoRepositorio = procedimientoRepositorio;
         }
 
-        public async Task<OperacionDto<RespuestaSimpleDto<string>>> CrearOActualizarAsync(ProcedimientoDto procedimientoDto)
+        public  Task<OperacionDto<RespuestaSimpleDto<string>>> CrearOActualizarAsync(ProcedimientoDto procedimientoDto)
         {
             throw new NotImplementedException();
         }
