@@ -15,29 +15,31 @@ namespace Jazani.ICL.ApiWeb.Controllers.Zonificacion
         private readonly INormaInteresFiltroServicio _normaInteresFiltroServicio;
         private readonly INormaInteresModuloServicio _normaInteresModuloServicio;
         public NormaInteresController(
-            INormaInteresFiltroServicio normaInteresFiltroServicio
+            INormaInteresFiltroServicio normaInteresFiltroServicio,
+            INormaInteresModuloServicio normaInteresModuloServicio
         )
         {
             _normaInteresFiltroServicio = normaInteresFiltroServicio;
+            _normaInteresModuloServicio = normaInteresModuloServicio;
         }
 
         [HttpGet("Listar")]
         // [RequiereAcceso()]
-        public async Task<List<NormaInteresFiltroDto>> ListarAsync(string norma, string id_naturaleza,
+        public async Task<List<NormaInteresFiltroDto>> ListarAsync(string norma, string id_naturaleza,string id_modulo,
             string fecha_publicacion_inicio, string fecha_publicacion_fin)
         {
             var operacion = await _normaInteresFiltroServicio
-                .ListarAsync( norma,id_naturaleza,fecha_publicacion_inicio,fecha_publicacion_fin);
+                .ListarAsync( norma,id_naturaleza,id_modulo,fecha_publicacion_inicio,fecha_publicacion_fin);
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
 
         [HttpGet("Listar2")]
         // [RequiereAcceso()]
-        public async Task<List<NormaInteresModuloDto>> Listar2Async(string norma, string id_naturaleza,
+        public async Task<List<NormaInteresModuloDto>> Listar2Async(string norma, string id_naturaleza, string id_modulo,
             string fecha_publicacion_inicio, string fecha_publicacion_fin)
         {
-            var operacion = await _normaInteresModuloServicio
-                .ListarAsync(norma, id_naturaleza, fecha_publicacion_inicio, fecha_publicacion_fin);
+                           var operacion = await _normaInteresModuloServicio
+                .ListarAsync(norma, id_naturaleza, id_modulo,fecha_publicacion_inicio, fecha_publicacion_fin);
             return ObtenerResultadoOGenerarErrorDeOperacion(operacion);
         }
 

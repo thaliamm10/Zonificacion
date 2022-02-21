@@ -17,8 +17,8 @@ namespace Jazani.ICL.Servicios.CompendioNormas.Mapeo
             {
                 destination.Modulo = context.Mapper.Map<List<ModulosDto>>(source.NormaInteresModulo
                     .Select(e => e.Modulo).ToList());
+                
             }
-
         }
     }
 }

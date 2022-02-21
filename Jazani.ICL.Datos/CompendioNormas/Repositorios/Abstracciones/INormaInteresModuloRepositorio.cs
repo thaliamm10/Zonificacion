@@ -9,7 +9,7 @@ namespace Jazani.ICL.Datos.CompendioNormas.Repositorios.Abstracciones
         :IICLRepositorio<NormaInteresModulo, long>
     {
         Task<List<NormaInteresModulo>> BuscarPorFiltros(
-            string norma, long id_naturaleza,
+            string norma,long id_modulo, long id_naturaleza,
             string fecha_publicacion_inicio,
             string fecha_publicacion_fin
         );

@@ -9,6 +9,8 @@ namespace Jazani.ICL.Servicios.CompendioNormas.Dtos
 
         public string IdNormaInteres { get; set; }
 
+        public int Estado { get; set; }
+
         public ModulosDto Modulo { get; set; }
         public NormaInteresListaDto NormaInteres { get; set; } 
     }

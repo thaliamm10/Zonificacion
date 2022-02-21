@@ -20,37 +20,39 @@ namespace Jazani.ICL.Datos.CompendioNormas.Repositorios.Implementaciones
         {
         }
 
-        public async Task<List<NormaInteres>> BuscarPorFiltros(string norma, long id_naturaleza,
+        public async Task<List<NormaInteres>> BuscarPorFiltros(string norma, long id_naturaleza, long id_modulo,
             string fecha_publicacion_inicio,
             string fecha_publicacion_fin)
         {
-            var response = await UnidadDeTrabajo.NormaInteress
-                .Include(t => t.Naturaleza)
-                .Include(te => te.NormaInteresModulo).ThenInclude(te => te.Modulo)
-                .ToListAsync();    
-            //.Where(e => (string.IsNullOrWhiteSpace(norma) || e.Nombre.Contains(norma))
-                //            && (string.IsNullOrWhiteSpace(id_naturaleza) || e.IdNaturaleza.Equals(id_naturaleza)
-                //                && ((string.IsNullOrWhiteSpace(fecha_publicacion_inicio) && string.IsNullOrWhiteSpace(fecha_publicacion_fin)) || (e.FechaPublicacion >= DateTime.Parse(fecha_publicacion_inicio) && e.FechaPublicacion <= DateTime.Parse(fecha_publicacion_fin)))
-                //            )).FirstOrDefaultAsync();
+            var response_i = UnidadDeTrabajo.NormaInteress
+                    .Include(t => t.Naturaleza)
+                    .Include(te => te.NormaInteresModulo)
+                    .ThenInclude(te => te.Modulo)
+                    .AsQueryable();
 
-            //var response_i = UnidadDeTrabajo.NormaInteress.AsQueryable();
 
-            //if (!string.isnullorwhitespace(norma))
-            //{
-            //    response_i = response_i.where(e => e.nombre.contains(norma));
-            //}
-            //if (id_naturaleza != null || id_naturaleza!=0)
-            //{
-            //    response_i = response_i.where(e => e.idnaturaleza == id_naturaleza);
-            //}
-            //if (!(string.isnullorwhitespace(fecha_publicacion_inicio)) && !(string.isnullorwhitespace(fecha_publicacion_fin)))
-            //{
-            //    response_i = response_i.where(e => e.fechapublicacion>=datetime.parse(fecha_publicacion_inicio) 
-            //                                       && e.fechapublicacion<= datetime.parse(fecha_publicacion_fin));
-            //}
+            response_i = response_i.Where(e => e.Estado == 1);
 
-            //var datos = await response_i.FirstOrDefaultAsync();
-            return response;
+            if (!string.IsNullOrWhiteSpace(norma))
+            {
+                response_i = response_i.Where(e => e.Nombre.Contains(norma));
+            }
+            if (id_naturaleza != 0)
+            {
+                response_i = response_i.Where(e => e.IdNaturaleza == id_naturaleza);
+            }
+            if (id_modulo != 0)
+            {
+                response_i = response_i.Where(e => (e.NormaInteresModulo.Select(t => t.Modulo.Id).Where(p=>p.Equals(id_modulo))).FirstOrDefault()==id_modulo );
+            }
+            if (!(string.IsNullOrWhiteSpace(fecha_publicacion_inicio)) && !(string.IsNullOrWhiteSpace(fecha_publicacion_fin)))
+            {
+                response_i = response_i.Where(e => e.FechaPublicacion >= DateTime.Parse(fecha_publicacion_inicio)
+                                                   && e.FechaPublicacion <= DateTime.Parse(fecha_publicacion_fin));
+            }
+
+            var datos = await response_i.ToListAsync();
+            return datos;
         }
 
     }

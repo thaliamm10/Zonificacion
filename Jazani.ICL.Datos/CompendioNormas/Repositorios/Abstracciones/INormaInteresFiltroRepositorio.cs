@@ -11,6 +11,7 @@ namespace Jazani.ICL.Datos.CompendioNormas.Repositorios.Abstracciones
     {
         Task<List<NormaInteres>> BuscarPorFiltros(
         string norma, long id_naturaleza,
+        long id_modulo,
         string fecha_publicacion_inicio,
         string fecha_publicacion_fin
             );

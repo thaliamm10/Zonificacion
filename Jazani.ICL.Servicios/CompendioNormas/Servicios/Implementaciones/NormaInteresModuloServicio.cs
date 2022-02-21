@@ -24,11 +24,13 @@ namespace Jazani.ICL.Servicios.CompendioNormas.Servicios.Implementaciones
             _normaInteresModuloRepositorio = normaInteresModuloRepositorio;
         }
 
-        public async Task<OperacionDto<List<NormaInteresModuloDto>>> ListarAsync(string norma, string id_naturaleza, string fecha_inicio, string fecha_fin)
+        public async Task<OperacionDto<List<NormaInteresModuloDto>>> ListarAsync(string norma, string id_naturaleza, string id_modulo, string fecha_inicio, string fecha_fin)
         {
             var idNaturaleza = RijndaelUtilitario.DecryptRijndaelFromUrl<long>(id_naturaleza);
+            var idModulo = RijndaelUtilitario.DecryptRijndaelFromUrl<long>(id_modulo);
+
             var entidad = await _normaInteresModuloRepositorio.BuscarPorFiltros(
-                norma, idNaturaleza, fecha_inicio, fecha_fin
+                norma, idNaturaleza, idModulo,fecha_inicio, fecha_fin
             );
 
             var dto = _mapper.Map<List<NormaInteresModuloDto>>(entidad);

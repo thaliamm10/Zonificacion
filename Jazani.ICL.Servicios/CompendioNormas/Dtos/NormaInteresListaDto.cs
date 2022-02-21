@@ -1,4 +1,5 @@
-﻿using Jazani.ICL.Servicios.General.Naturaleza.Dtos;
+﻿using System;
+using Jazani.ICL.Servicios.General.Naturaleza.Dtos;
 
 namespace Jazani.ICL.Servicios.CompendioNormas.Dtos
 {
@@ -9,6 +10,7 @@ namespace Jazani.ICL.Servicios.CompendioNormas.Dtos
         public string Nombre { get; set; }
         public string Sumilla { get; set; }
 
+        public DateTime FechaPublicacion { get; set; }
         public long IdNaturaleza { get; set; }
         public NaturalezaDto Naturaleza { get; set; }
     }
